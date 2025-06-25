@@ -101,6 +101,37 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
+
+  .animate-gradient-x {
+    background-size: 400% 400%;
+    animation: gradient-x 4s ease-in-out infinite;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out forwards;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .animate-slide-down {
+    animation: slideDown 0.6s ease-out forwards;
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.4s ease-out forwards;
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  .animate-hover-scale {
+    transition: transform 0.2s ease-out;
+  }
+
+  .animate-hover-scale:hover {
+    transform: scale(1.05);
+  }
 }
 
 @keyframes fadeIn {
@@ -114,12 +145,61 @@
   }
 }
 
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes gradient-x {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
 @keyframes float {
   0%, 100% {
     transform: translateY(0px);
   }
   50% {
     transform: translateY(-10px);
+  }
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
   }
 }
 
@@ -163,4 +243,97 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
   transform: translateY(-2px);
   transition: all 0.3s ease;
+}
+
+/* Microinteraction utilities */
+.hover-lift {
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.hover-glow {
+  transition: box-shadow 0.3s ease-out;
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 20px rgba(147, 51, 234, 0.4);
+}
+
+.pulse-slow {
+  animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Typography enhancements with Inter font */
+.font-inter {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Modular scale typography */
+.text-xs { font-size: 0.75rem; line-height: 1rem; } /* 12px */
+.text-sm { font-size: 0.875rem; line-height: 1.25rem; } /* 14px */
+.text-base { font-size: 1rem; line-height: 1.5rem; } /* 16px */
+.text-lg { font-size: 1.125rem; line-height: 1.75rem; } /* 18px */
+.text-xl { font-size: 1.25rem; line-height: 1.75rem; } /* 20px */
+.text-2xl { font-size: 1.5rem; line-height: 2rem; } /* 24px */
+.text-3xl { font-size: 1.875rem; line-height: 2.25rem; } /* 30px */
+.text-4xl { font-size: 2.25rem; line-height: 2.5rem; } /* 36px */
+.text-5xl { font-size: 3rem; line-height: 1; } /* 48px */
+.text-6xl { font-size: 3.75rem; line-height: 1; } /* 60px */
+.text-7xl { font-size: 4.5rem; line-height: 1; } /* 72px */
+
+/* Consistent vertical rhythm */
+.leading-tight { line-height: 1.25; }
+.leading-snug { line-height: 1.375; }
+.leading-normal { line-height: 1.5; }
+.leading-relaxed { line-height: 1.625; }
+.leading-loose { line-height: 2; }
+
+/* Color theory - harmonious color combinations */
+.color-primary-purple { color: hsl(258, 84%, 60%); }
+.color-primary-blue { color: hsl(212, 84%, 60%); }
+.color-accent-teal { color: hsl(174, 84%, 60%); }
+.color-accent-pink { color: hsl(330, 84%, 60%); }
+
+.bg-primary-purple { background-color: hsl(258, 84%, 60%); }
+.bg-primary-blue { background-color: hsl(212, 84%, 60%); }
+.bg-accent-teal { background-color: hsl(174, 84%, 60%); }
+.bg-accent-pink { background-color: hsl(330, 84%, 60%); }
+
+/* Gradient combinations with consistent saturation */
+.gradient-primary {
+  background: linear-gradient(135deg, hsl(258, 84%, 60%) 0%, hsl(212, 84%, 60%) 100%);
+}
+
+.gradient-analogous {
+  background: linear-gradient(135deg, hsl(258, 84%, 60%) 0%, hsl(288, 84%, 60%) 50%, hsl(318, 84%, 60%) 100%);
+}
+
+.gradient-complementary {
+  background: linear-gradient(135deg, hsl(258, 84%, 60%) 0%, hsl(78, 84%, 60%) 100%);
+}
+
+/* Transition utilities with elegant timing */
+.transition-elegant {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.transition-bounce {
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.transition-smooth {
+  transition: all 0.2s ease-out;
+}
+
+.delay-elegant {
+  transition-delay: 0.1s;
 }
