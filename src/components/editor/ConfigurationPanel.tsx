@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { ComponentConfig } from '@/pages/Editor';
 import { Card } from '@/components/ui/card';
@@ -8,7 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Slider } from '@/components/ui/slider';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Settings, Palette, Type, Layout, Zap } from 'lucide-react';
+import { Settings, Palette, AlignLeft, AlignCenter, AlignRight, Undo, Redo } from 'lucide-react';
 
 interface ConfigurationPanelProps {
   component: ComponentConfig | null;
@@ -43,6 +42,10 @@ export const ConfigurationPanel: React.FC<ConfigurationPanelProps> = ({
     });
   };
 
+  const updateComponentProps = (updates: Partial<ComponentConfig>) => {
+    onUpdateComponent(component.id, updates);
+  };
+
   const gradientOptions = [
     { value: 'purple-to-blue', label: 'Purple to Blue' },
     { value: 'blue-to-teal', label: 'Blue to Teal' },
@@ -56,12 +59,13 @@ export const ConfigurationPanel: React.FC<ConfigurationPanelProps> = ({
     { value: 'right', label: 'Right' }
   ];
 
-  const animationOptions = [
-    { value: 'fade-in', label: 'Fade In' },
-    { value: 'slide-up', label: 'Slide Up' },
-    { value: 'slide-down', label: 'Slide Down' },
-    { value: 'scale-in', label: 'Scale In' },
-    { value: 'hover-scale', label: 'Hover Scale' }
+  const blendModeOptions = [
+    { value: 'normal', label: 'Normal' },
+    { value: 'multiply', label: 'Multiply' },
+    { value: 'screen', label: 'Screen' },
+    { value: 'overlay', label: 'Overlay' },
+    { value: 'darken', label: 'Darken' },
+    { value: 'lighten', label: 'Lighten' }
   ];
 
   return (
@@ -76,10 +80,117 @@ export const ConfigurationPanel: React.FC<ConfigurationPanelProps> = ({
       </div>
 
       <div className="p-6 space-y-6">
+        {/* Transform Properties */}
+        <Card className="bg-slate-800/30 backdrop-blur-xl border-white/10 p-4">
+          <div className="flex items-center gap-2 mb-4">
+            <Settings className="w-4 h-4 text-purple-400" />
+            <h3 className="font-semibold text-white">Transform</h3>
+          </div>
+          
+          <div className="space-y-4">
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <Label className="text-slate-300 text-sm font-medium">X Position</Label>
+                <Input
+                  type="number"
+                  value={component.position.x}
+                  onChange={(e) => updateComponentProps({ 
+                    position: { ...component.position, x: parseInt(e.target.value) || 0 }
+                  })}
+                  className="mt-1 bg-slate-700/50 border-white/20 text-white"
+                />
+              </div>
+              <div>
+                <Label className="text-slate-300 text-sm font-medium">Y Position</Label>
+                <Input
+                  type="number"
+                  value={component.position.y}
+                  onChange={(e) => updateComponentProps({ 
+                    position: { ...component.position, y: parseInt(e.target.value) || 0 }
+                  })}
+                  className="mt-1 bg-slate-700/50 border-white/20 text-white"
+                />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <Label className="text-slate-300 text-sm font-medium">Width</Label>
+                <Input
+                  type="number"
+                  value={component.size.width}
+                  onChange={(e) => updateComponentProps({ 
+                    size: { ...component.size, width: parseInt(e.target.value) || 100 }
+                  })}
+                  className="mt-1 bg-slate-700/50 border-white/20 text-white"
+                />
+              </div>
+              <div>
+                <Label className="text-slate-300 text-sm font-medium">Height</Label>
+                <Input
+                  type="number"
+                  value={component.size.height}
+                  onChange={(e) => updateComponentProps({ 
+                    size: { ...component.size, height: parseInt(e.target.value) || 100 }
+                  })}
+                  className="mt-1 bg-slate-700/50 border-white/20 text-white"
+                />
+              </div>
+            </div>
+
+            <div>
+              <Label className="text-slate-300 text-sm font-medium mb-2 block">
+                Rotation: {component.rotation || 0}°
+              </Label>
+              <Slider
+                value={[component.rotation || 0]}
+                onValueChange={([value]) => updateComponentProps({ rotation: value })}
+                max={360}
+                min={-360}
+                step={1}
+                className="w-full"
+              />
+            </div>
+
+            <div>
+              <Label className="text-slate-300 text-sm font-medium mb-2 block">
+                Opacity: {component.opacity || 100}%
+              </Label>
+              <Slider
+                value={[component.opacity || 100]}
+                onValueChange={([value]) => updateComponentProps({ opacity: value })}
+                max={100}
+                min={0}
+                step={1}
+                className="w-full"
+              />
+            </div>
+
+            <div>
+              <Label className="text-slate-300 text-sm font-medium">Blend Mode</Label>
+              <Select 
+                value={component.blendMode || 'normal'} 
+                onValueChange={(value) => updateComponentProps({ blendMode: value })}
+              >
+                <SelectTrigger className="mt-1 bg-slate-700/50 border-white/20 text-white">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent className="bg-slate-800 border-white/20">
+                  {blendModeOptions.map((option) => (
+                    <SelectItem key={option.value} value={option.value} className="text-white hover:bg-slate-700">
+                      {option.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+        </Card>
+
         {/* Content Properties */}
         <Card className="bg-slate-800/30 backdrop-blur-xl border-white/10 p-4">
           <div className="flex items-center gap-2 mb-4">
-            <Type className="w-4 h-4 text-purple-400" />
+            <AlignLeft className="w-4 h-4 text-purple-400" />
             <h3 className="font-semibold text-white">Content</h3>
           </div>
           
@@ -225,7 +336,10 @@ export const ConfigurationPanel: React.FC<ConfigurationPanelProps> = ({
 
             <div>
               <Label className="text-slate-300 text-sm font-medium">Text Alignment</Label>
-              <Select value={component.props.alignment} onValueChange={(value) => updateProps({ alignment: value })}>
+              <Select 
+                value={component.props.alignment || 'center'} 
+                onValueChange={(value: 'left' | 'center' | 'right') => updateProps({ alignment: value })}
+              >
                 <SelectTrigger className="mt-1 bg-slate-700/50 border-white/20 text-white">
                   <SelectValue />
                 </SelectTrigger>
@@ -282,30 +396,6 @@ export const ConfigurationPanel: React.FC<ConfigurationPanelProps> = ({
                 />
               </div>
             )}
-          </div>
-        </Card>
-
-        {/* Animation Properties */}
-        <Card className="bg-slate-800/30 backdrop-blur-xl border-white/10 p-4">
-          <div className="flex items-center gap-2 mb-4">
-            <Zap className="w-4 h-4 text-purple-400" />
-            <h3 className="font-semibold text-white">Animation</h3>
-          </div>
-          
-          <div>
-            <Label className="text-slate-300 text-sm font-medium">Entry Animation</Label>
-            <Select value={component.props.animation} onValueChange={(value) => updateProps({ animation: value })}>
-              <SelectTrigger className="mt-1 bg-slate-700/50 border-white/20 text-white">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent className="bg-slate-800 border-white/20">
-                {animationOptions.map((option) => (
-                  <SelectItem key={option.value} value={option.value} className="text-white hover:bg-slate-700">
-                    {option.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
           </div>
         </Card>
       </div>
