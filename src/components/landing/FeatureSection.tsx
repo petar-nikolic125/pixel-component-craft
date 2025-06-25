@@ -45,10 +45,10 @@ export const FeatureSection = () => {
   return (
     <section id="features" className="relative py-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
+        {/* Section Header with improved typography */}
         <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-6xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+            <span className="bg-gradient-to-r from-slate-100 to-slate-200 bg-clip-text text-transparent">
               Everything you need to
             </span>
             <br />
@@ -56,67 +56,63 @@ export const FeatureSection = () => {
               build stunning pages
             </span>
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+          <p className="text-lg text-slate-200 max-w-3xl mx-auto leading-relaxed">
             From concept to deployment, ComponentForge provides all the tools 
             you need to create professional landing pages that convert.
           </p>
         </div>
 
-        {/* Strategy Panel */}
+        {/* Strategy Panel with consistent spacing */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
           {['Conversion-First', 'Business-Aligned', 'Brand-Centric'].map((title, index) => (
-            <Card key={title} className="group bg-white/5 backdrop-blur-xl border-white/10 hover:border-white/20 transition-all duration-300 hover:scale-105 cursor-pointer">
-              <div className="p-8">
-                <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-                  {title}
-                </h3>
-                <ul className="space-y-2 text-gray-300">
-                  {index === 0 && (
-                    <>
-                      <li className="flex items-center"><span className="w-2 h-2 bg-purple-400 rounded-full mr-3"></span>A/B tested layouts</li>
-                      <li className="flex items-center"><span className="w-2 h-2 bg-purple-400 rounded-full mr-3"></span>CRO best practices</li>
-                      <li className="flex items-center"><span className="w-2 h-2 bg-purple-400 rounded-full mr-3"></span>Analytics integration</li>
-                    </>
-                  )}
-                  {index === 1 && (
-                    <>
-                      <li className="flex items-center"><span className="w-2 h-2 bg-blue-400 rounded-full mr-3"></span>ROI-focused design</li>
-                      <li className="flex items-center"><span className="w-2 h-2 bg-blue-400 rounded-full mr-3"></span>Lead generation</li>
-                      <li className="flex items-center"><span className="w-2 h-2 bg-blue-400 rounded-full mr-3"></span>Performance metrics</li>
-                    </>
-                  )}
-                  {index === 2 && (
-                    <>
-                      <li className="flex items-center"><span className="w-2 h-2 bg-green-400 rounded-full mr-3"></span>Brand consistency</li>
-                      <li className="flex items-center"><span className="w-2 h-2 bg-green-400 rounded-full mr-3"></span>Custom styling</li>
-                      <li className="flex items-center"><span className="w-2 h-2 bg-green-400 rounded-full mr-3"></span>Design systems</li>
-                    </>
-                  )}
-                </ul>
-              </div>
+            <Card key={title} className="group bg-slate-900/40 backdrop-blur-xl border-slate-700 hover:border-slate-600 transition-all duration-300 hover:scale-105 cursor-pointer p-8 focus:ring-2 focus:ring-purple-500" tabIndex={0}>
+              <h3 className="text-xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
+                {title}
+              </h3>
+              <ul className="space-y-3 text-slate-200">
+                {index === 0 && (
+                  <>
+                    <li className="flex items-center"><span className="w-2 h-2 bg-purple-400 rounded-full mr-3 flex-shrink-0"></span>A/B tested layouts</li>
+                    <li className="flex items-center"><span className="w-2 h-2 bg-purple-400 rounded-full mr-3 flex-shrink-0"></span>CRO best practices</li>
+                    <li className="flex items-center"><span className="w-2 h-2 bg-purple-400 rounded-full mr-3 flex-shrink-0"></span>Analytics integration</li>
+                  </>
+                )}
+                {index === 1 && (
+                  <>
+                    <li className="flex items-center"><span className="w-2 h-2 bg-blue-400 rounded-full mr-3 flex-shrink-0"></span>ROI-focused design</li>
+                    <li className="flex items-center"><span className="w-2 h-2 bg-blue-400 rounded-full mr-3 flex-shrink-0"></span>Lead generation</li>
+                    <li className="flex items-center"><span className="w-2 h-2 bg-blue-400 rounded-full mr-3 flex-shrink-0"></span>Performance metrics</li>
+                  </>
+                )}
+                {index === 2 && (
+                  <>
+                    <li className="flex items-center"><span className="w-2 h-2 bg-green-400 rounded-full mr-3 flex-shrink-0"></span>Brand consistency</li>
+                    <li className="flex items-center"><span className="w-2 h-2 bg-green-400 rounded-full mr-3 flex-shrink-0"></span>Custom styling</li>
+                    <li className="flex items-center"><span className="w-2 h-2 bg-green-400 rounded-full mr-3 flex-shrink-0"></span>Design systems</li>
+                  </>
+                )}
+              </ul>
             </Card>
           ))}
         </div>
 
-        {/* Feature Grid */}
+        {/* Feature Grid with standardized spacing */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (
-              <Card key={feature.title} className="group bg-white/5 backdrop-blur-xl border-white/10 hover:border-white/20 transition-all duration-300 hover:scale-105 cursor-pointer">
-                <div className="p-8">
-                  <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${feature.gradient} p-0.5 mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                    <div className="w-full h-full bg-black/80 rounded-2xl flex items-center justify-center">
-                      <Icon className="w-8 h-8 text-white" />
-                    </div>
+              <Card key={feature.title} className="group bg-slate-900/40 backdrop-blur-xl border-slate-700 hover:border-slate-600 transition-all duration-300 hover:scale-105 cursor-pointer p-8 focus:ring-2 focus:ring-purple-500" tabIndex={0}>
+                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${feature.gradient} p-0.5 mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                  <div className="w-full h-full bg-slate-900/80 rounded-2xl flex items-center justify-center">
+                    <Icon className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-blue-400 group-hover:bg-clip-text transition-all duration-300">
-                    {feature.title}
-                  </h3>
-                  <p className="text-gray-400 leading-relaxed">
-                    {feature.description}
-                  </p>
                 </div>
+                <h3 className="text-xl font-bold mb-4 text-slate-100 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-blue-400 group-hover:bg-clip-text transition-all duration-300">
+                  {feature.title}
+                </h3>
+                <p className="text-slate-300 leading-relaxed">
+                  {feature.description}
+                </p>
               </Card>
             );
           })}
