@@ -12,7 +12,7 @@ export const HeroSection = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
         {/* Badge with improved contrast */}
-        <div className="inline-flex items-center px-4 py-2 rounded-full bg-slate-800/60 backdrop-blur-sm border border-slate-700 text-sm font-medium text-slate-100 mb-8 animate-fade-in focus:ring-2 focus:ring-purple-500">
+        <div className="inline-flex items-center px-4 py-2 rounded-full bg-slate-800/60 backdrop-blur-sm border border-slate-700 text-sm font-medium text-slate-200 mb-8 animate-fade-in focus:ring-2 focus:ring-purple-500">
           <span className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
           Now in Beta - Join 1000+ creators
         </div>
@@ -30,7 +30,7 @@ export const HeroSection = () => {
           </h1>
 
           {/* Improved subheading with better contrast */}
-          <p className="text-lg md:text-xl text-slate-100 max-w-3xl mx-auto mb-12 animate-fade-in animation-delay-200 leading-relaxed">
+          <p className="text-lg md:text-xl text-slate-200 max-w-3xl mx-auto mb-12 animate-fade-in animation-delay-200 leading-relaxed">
             Pixel-perfect design meets data-driven strategy. 
             <span className="block mt-2 bg-gradient-to-r from-purple-300 to-blue-300 bg-clip-text text-transparent font-semibold">
               Drag. Drop. Deploy.
@@ -38,7 +38,7 @@ export const HeroSection = () => {
           </p>
 
           {/* CTA Buttons with improved focus states */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16 animate-fade-in animation-delay-400">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8 animate-fade-in animation-delay-400">
             <Button 
               size="lg" 
               className="group bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white border-0 px-8 py-4 text-lg font-semibold shadow-2xl shadow-purple-500/25 hover:shadow-purple-500/40 transition-all duration-300 hover:scale-105 focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-slate-900"
@@ -56,10 +56,17 @@ export const HeroSection = () => {
               Watch Demo
             </Button>
           </div>
+
+          {/* Designer Watermark */}
+          <div className="mt-6 animate-fade-in animation-delay-600">
+            <p className="text-sm text-transparent bg-clip-text bg-gradient-to-r from-gray-300 via-gray-100 to-gray-300 drop-shadow-sm italic font-serif">
+              Designed by Petar Nikolić
+            </p>
+          </div>
         </div>
 
         {/* Trust indicators with better spacing */}
-        <div className="animate-fade-in animation-delay-600 mt-16">
+        <div className="animate-fade-in animation-delay-800 mt-16">
           <p className="text-sm text-slate-400 mb-6">Trusted by teams at</p>
           <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
             {['GitHub', 'Stripe', 'Vercel', 'Linear', 'Framer', 'Figma'].map((brand) => (
@@ -71,7 +78,7 @@ export const HeroSection = () => {
         </div>
 
         {/* Mockup with improved styling */}
-        <div className="mt-20 relative animate-fade-in animation-delay-800">
+        <div className="mt-20 relative animate-fade-in animation-delay-1000">
           <div className="relative mx-auto w-full max-w-4xl">
             <div className="absolute inset-0 bg-gradient-to-r from-purple-500/15 to-blue-500/15 blur-3xl rounded-3xl"></div>
             <div className="relative bg-slate-900/60 backdrop-blur-xl border border-slate-700 rounded-2xl p-6 shadow-2xl">
