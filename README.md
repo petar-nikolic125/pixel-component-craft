@@ -2,39 +2,53 @@
 
 A full-stack web application for creating landing pages using a drag-and-drop visual editor.
 
-## Running Locally
+## Running the Project
 
 ### Prerequisites
 - Node.js 18+ installed on your machine
-- Git installed
 
-### Setup Instructions
+### Universal Setup (Works on Windows, Mac, Linux)
 
-1. **Clone or download this project** to your local machine
-
-2. **Install dependencies**:
+1. **Install dependencies**:
    ```bash
    npm install
    ```
 
-3. **Start the development server**:
+2. **Start the development server** (choose the easiest option):
+
+   **Option A: Universal Node.js script (works everywhere)**
    ```bash
-   npm run dev
+   node start.js
    ```
 
-4. **Open your browser** and navigate to:
+   **Option B: Direct command with cross-env**
+   ```bash
+   npx cross-env NODE_ENV=development tsx server/index.ts
+   ```
+
+   **Option C: Platform-specific scripts**
+   ```bash
+   # Windows
+   ./dev.bat
+   
+   # Mac/Linux/Git Bash
+   ./dev.sh
+   ```
+
+3. **Open your browser** and navigate to:
    ```
    http://localhost:5000
    ```
 
-The application will be running with:
-- Frontend: React with Vite
-- Backend: Express.js server
-- Hot reload enabled for development
+### What You'll See
+- Complete landing page builder interface
+- Drag-and-drop visual editor with 40+ components
+- Real-time preview and export capabilities
+- Hot reload for development changes
 
 ### Available Scripts
 
-- `npm run dev` - Start development server
+- `npm run dev` - Start development server (after updating package.json)
 - `npm run build` - Build for production
 - `npm run start` - Start production server
 - `npm run check` - Run TypeScript checks
