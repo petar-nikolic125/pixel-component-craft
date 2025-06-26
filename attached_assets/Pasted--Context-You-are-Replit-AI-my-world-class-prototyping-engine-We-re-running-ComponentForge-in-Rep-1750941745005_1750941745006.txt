@@ -1,0 +1,46 @@
+# Context
+You are Replit AI, my world-class prototyping engine. We’re running ComponentForge in Replit as an **all-tiers-enabled prototype**—no feature behind a paywall, everything must be live and editable. This is the core feature demo, so every component, interaction, export, and UI element must be present and working flawlessly.
+
+# Task
+1. **Unlock All Components**  
+   - Remove any “locked” badges or gating logic.  
+   - Ensure the full library of **all existing components** (hero, feature cards, testimonials, footers, navbars, forms, buttons, icons, etc.) is immediately available in the sidebar for drag-and-drop.
+
+2. **Add 30+ New Components & Templates**  
+   - Create at least 30 additional modules spanning:  
+     - **Buttons**: solid, outline, 3D neon, glassmorphic, icon buttons, toggle switches.  
+     - **Hero Variants**: video background, split-screen, overlay text, carousel.  
+     - **Feature Blocks**: grid, list, icon-driven, alternating layouts.  
+     - **Testimonials**: slider, card stack, video quotes.  
+     - **Footers**: multi-column, minimal, newsletter signup.  
+     - **Widgets**: pricing tables, countdown timers, chart embeds (bar, line, pie), FAQ accordion.  
+     - **Forms**: login/register, contact, multi-step wizard, inline validation.  
+     - **Media**: image galleries, video players, background masks.
+
+3. **Perfect Drag & Drop / Resize / Snap**  
+   - **Drag & Drop**: Components snap into place on a 4-pt grid. Show alignment guides on hover and drag.  
+   - **Resize**: Corner & edge handles must let you free-transform with live X/Y/Width/Height readouts. Input fields next to the canvas allow exact numeric entry.  
+   - **Smart Snapping**: As you drag or resize, components snap to grid lines, centers, thirds, and to each other’s edges.  
+   - **Fix Bugs**: Eliminate any broken handles, jittery movement, overflow issues, or ghost drags.
+
+4. **Smooth Interactions & Performance**  
+   - Ensure WebGL-accelerated rendering (e.g. via PixiJS) for 60 fps canvas updates.  
+   - All 30+ new components have hover states, focus rings, and micro-animations (fade, slide, pop).  
+   - Lazy-load offscreen components and templates to maintain performance.
+
+5. **Prototype-Only Tier Flags**  
+   - Display tier badges “Free / Premium / Deluxe” but mark them all as “Active (Prototype Mode)” in the UI.  
+   - Tooltips explain: “All features enabled for prototype—no locks.”
+
+6. **Export & Preview**  
+   - Confirm “Export Preview” (PNG), “Export HTML/CSS”, “Export React”, and “Export JSON” buttons all work and generate sample output with the watermark comment.  
+   - Show live demo of a selected component exported to CodePen embed snippet.
+
+# Replit Instructions
+- Update `/frontend/src/components/Library.tsx` to include the 30+ new component entries.  
+- Fix drag/resize logic in `/frontend/src/hooks/useCanvas.ts` and ensure snapping in `/frontend/src/utils/snapping.ts`.  
+- Confirm HTTPS is enabled via your existing `vite.config.ts` and Express server.  
+- Run `npm run dev:frontend & npm run dev:backend` in your `.replit` to launch both servers.
+
+# Deliverable
+Paste a single Replit prompt encapsulating **all** of the above—complete with component lists, interaction specs, code file hints, and Replit setup—so I can copy-paste it into Lovable and get a fully working, fully unlocked prototype in Replit right now.  

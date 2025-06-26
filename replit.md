@@ -121,6 +121,16 @@ Changelog:
   * Keyboard shortcuts (V=Move, R=Rotate, S=Scale, Ctrl+Z/Y=Undo/Redo)
   * CI/CD pipeline with GitHub Actions for automated builds
   * PNG export automation with Puppeteer
+- June 26, 2025. Expanded to 40+ components in prototype mode:
+  * Hero variants: video background, split-screen, carousel
+  * Button styles: solid, outline, 3D neon, glassmorphic, icon buttons
+  * Feature blocks: grid, list, icon-driven, alternating layouts
+  * Testimonials: slider, card stack, video quotes
+  * Forms: contact, login/register, multi-step wizard, newsletter
+  * Widgets: pricing tables, countdown timers, charts (bar/line/pie), FAQ accordion
+  * Media: image galleries, video players, background masks
+  * Navigation: navbar, multi-column footer, minimal footer, breadcrumbs
+  * All components unlocked in prototype mode with "✓ Active" badges
 ```
 
 ## User Preferences

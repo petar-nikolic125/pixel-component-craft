@@ -21,7 +21,15 @@ import { toast } from '@/hooks/use-toast';
 
 export interface ComponentConfig {
   id: string;
-  type: 'hero' | 'feature' | 'button' | 'testimonial';
+  type: 'hero' | 'feature' | 'button' | 'testimonial' | 
+        'hero-video' | 'hero-split' | 'hero-carousel' |
+        'button-outline' | 'button-3d' | 'button-glass' | 'button-icon' | 'toggle-switch' |
+        'feature-grid' | 'feature-list' | 'feature-icons' | 'feature-alternating' |
+        'testimonial-slider' | 'testimonial-stack' | 'testimonial-video' |
+        'form-contact' | 'form-login' | 'form-register' | 'form-wizard' | 'form-newsletter' |
+        'pricing-table' | 'countdown-timer' | 'chart-bar' | 'chart-line' | 'chart-pie' | 'faq-accordion' |
+        'image-gallery' | 'video-player' | 'background-mask' |
+        'navbar' | 'footer-multi' | 'footer-minimal' | 'breadcrumb';
   props: {
     headline?: string;
     subheadline?: string;
