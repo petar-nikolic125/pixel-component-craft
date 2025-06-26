@@ -119,8 +119,8 @@ export const EnhancedCanvas = forwardRef<HTMLDivElement, EnhancedCanvasProps>(({
   }, [components]);
 
   // Find nearest snap point
-  const findNearestSnapPoint = useCallback((x: number, y: number, excludeId?: string) => {
-    const allSnapPoints = [
+  const findNearestSnapPoint = useCallback((x: number, y: number, excludeId?: string): SnapPoint | null => {
+    const allSnapPoints: SnapPoint[] = [
       ...(snapToGrid ? generateGridPoints() : []),
       ...generateComponentSnapPoints(excludeId)
     ];
@@ -266,8 +266,8 @@ export const EnhancedCanvas = forwardRef<HTMLDivElement, EnhancedCanvasProps>(({
     let finalY = y;
     
     if (snapToGrid) {
-      const snapPoint = findNearestSnapPoint(x, y);
-      if (snapPoint) {
+      const snapPoint: SnapPoint | null = findNearestSnapPoint(x, y);
+      if (snapPoint !== null) {
         finalX = snapPoint.x;
         finalY = snapPoint.y;
       }
@@ -315,8 +315,8 @@ export const EnhancedCanvas = forwardRef<HTMLDivElement, EnhancedCanvasProps>(({
     
     // Snap to grid or components
     if (snapToGrid) {
-      const snapPoint = findNearestSnapPoint(newX, newY, selectedComponent);
-      if (snapPoint) {
+      const snapPoint: SnapPoint | null = findNearestSnapPoint(newX, newY, selectedComponent);
+      if (snapPoint !== null) {
         newX = snapPoint.x;
         newY = snapPoint.y;
       }

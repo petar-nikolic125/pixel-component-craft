@@ -86,14 +86,15 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
     
     if (property.includes('.')) {
       const [parent, child] = property.split('.');
+      const parentValue = component[parent as keyof ComponentConfig];
       onUpdateComponent(component.id, {
         [parent]: {
-          ...component[parent as keyof ComponentConfig],
+          ...(typeof parentValue === 'object' && parentValue !== null ? parentValue : {}),
           [child]: value
         }
-      });
+      } as Partial<ComponentConfig>);
     } else {
-      onUpdateComponent(component.id, { [property]: value });
+      onUpdateComponent(component.id, { [property]: value } as Partial<ComponentConfig>);
     }
   };
 
