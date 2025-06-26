@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { ComponentConfig } from '@/pages/Editor';
+import { ComponentConfig } from '@/pages/EditorNew';
 import { 
   Layout, 
   Star, 

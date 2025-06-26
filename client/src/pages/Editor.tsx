@@ -1,7 +1,9 @@
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
 import { EnhancedCanvas } from '@/components/editor/EnhancedCanvas';
+import { GridCanvas } from '@/components/editor/GridCanvas';
+import { useHistoryManager } from '@/hooks/useHistoryManager';
 import { ComponentLibrary } from '@/components/editor/ComponentLibrary';
 import { PropertiesPanel } from '@/components/editor/PropertiesPanel';
 import { LayersTreePanel } from '@/components/editor/LayersTreePanel';
@@ -60,33 +62,31 @@ export interface HistoryEntry {
 }
 
 const Editor = () => {
-  const [components, setComponents] = useState<ComponentConfig[]>([]);
+  const {
+    components,
+    history,
+    currentIndex,
+    canUndo,
+    canRedo,
+    undo,
+    redo,
+    updateComponents,
+    clearHistory
+  } = useHistoryManager([]);
+
   const [selectedComponent, setSelectedComponent] = useState<string | null>(null);
   const [showExportModal, setShowExportModal] = useState(false);
   const [userTier, setUserTier] = useState<'free' | 'premium' | 'deluxe'>('free');
-  const [history, setHistory] = useState<HistoryEntry[]>([]);
-  const [historyIndex, setHistoryIndex] = useState(-1);
   const [showGrid, setShowGrid] = useState(true);
   const [snapToGrid, setSnapToGrid] = useState(true);
   const [previewMode, setPreviewMode] = useState(false);
   const [sidebarTab, setSidebarTab] = useState<'library' | 'layers' | 'properties'>('library');
   const [activeTool, setActiveTool] = useState<'select' | 'mask' | 'rotate' | 'scale'>('select');
   const [activeMaskTool, setActiveMaskTool] = useState('rectangle');
+  const [useGridCanvas, setUseGridCanvas] = useState(true);
   const canvasRef = useRef<HTMLDivElement>(null);
 
-  const addToHistory = (action: string, newComponents: ComponentConfig[]) => {
-    const entry: HistoryEntry = {
-      id: Date.now().toString(),
-      action,
-      timestamp: Date.now(),
-      components: JSON.parse(JSON.stringify(newComponents))
-    };
-    
-    const newHistory = history.slice(0, historyIndex + 1);
-    newHistory.push(entry);
-    setHistory(newHistory);
-    setHistoryIndex(newHistory.length - 1);
-  };
+
 
   const addComponent = (type: ComponentConfig['type']) => {
     const newComponent: ComponentConfig = {
