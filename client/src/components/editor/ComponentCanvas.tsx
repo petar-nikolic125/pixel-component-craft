@@ -1,9 +1,10 @@
 
-import React, { forwardRef, useState, useRef, useEffect } from 'react';
+import React, { forwardRef, useState, useRef, useEffect, useCallback } from 'react';
 import { ComponentConfig } from '@/pages/Editor';
 import { ComponentRenderer } from './ComponentRenderer';
-import { Trash2, Move, RotateCcw, Eye } from 'lucide-react';
+import { Trash2, Move, RotateCcw, Eye, Square, Circle, MousePointer, RotateCw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 
 interface ComponentCanvasProps {
   components: ComponentConfig[];
@@ -14,7 +15,8 @@ interface ComponentCanvasProps {
   showGrid: boolean;
   snapToGrid: boolean;
   previewMode: boolean;
-  activeTool: 'select' | 'mask' | 'rotate';
+  activeTool: 'select' | 'mask' | 'rotate' | 'scale';
+  userTier: 'free' | 'premium' | 'deluxe';
 }
 
 export const ComponentCanvas = forwardRef<HTMLDivElement, ComponentCanvasProps>(
@@ -53,7 +55,7 @@ export const ComponentCanvas = forwardRef<HTMLDivElement, ComponentCanvasProps>(
     };
 
     const generateSmartGuides = (movingComponent: ComponentConfig) => {
-      const guides = { x: [], y: [] };
+      const guides: { x: number[], y: number[] } = { x: [], y: [] };
       const threshold = 5;
 
       components.forEach(comp => {

@@ -1,18 +1,22 @@
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
-import { ComponentCanvas } from '@/components/editor/ComponentCanvas';
+import { AdvancedCanvas } from '@/components/editor/AdvancedCanvas';
 import { ComponentLibrary } from '@/components/editor/ComponentLibrary';
 import { ConfigurationPanel } from '@/components/editor/ConfigurationPanel';
-import { LayersPanel } from '@/components/editor/LayersPanel';
+import { AdvancedLayersPanel } from '@/components/editor/AdvancedLayersPanel';
 import { HistoryPanel } from '@/components/editor/HistoryPanel';
 import { StylePresetsPanel } from '@/components/editor/StylePresetsPanel';
 import { TransformControls } from '@/components/editor/TransformControls';
-import { ExportModal } from '@/components/editor/ExportModal';
+import { ExportEngine } from '@/components/editor/ExportEngine';
+import { BlendModesPanel } from '@/components/editor/BlendModesPanel';
+import { MaskingPanel } from '@/components/editor/MaskingPanel';
 import { Navigation } from '@/components/layout/Navigation';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Download, Eye, Code, Palette, Layers, Settings, Magnet, Grid2X2 } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import { Separator } from '@/components/ui/separator';
+import { Download, Eye, Code, Palette, Layers, Settings, Magnet, Grid2X2, MousePointer, RotateCcw, Scissors, Square, History, Crown } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
 
 export interface ComponentConfig {
@@ -51,13 +55,14 @@ const Editor = () => {
   const [components, setComponents] = useState<ComponentConfig[]>([]);
   const [selectedComponent, setSelectedComponent] = useState<string | null>(null);
   const [showExportModal, setShowExportModal] = useState(false);
-  const [exportTier, setExportTier] = useState<'free' | 'pro'>('free');
+  const [userTier, setUserTier] = useState<'free' | 'premium' | 'deluxe'>('free');
   const [history, setHistory] = useState<HistoryEntry[]>([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
   const [showGrid, setShowGrid] = useState(true);
   const [snapToGrid, setSnapToGrid] = useState(true);
   const [previewMode, setPreviewMode] = useState(false);
-  const [activeTool, setActiveTool] = useState<'select' | 'mask' | 'rotate'>('select');
+  const [activeTool, setActiveTool] = useState<'select' | 'mask' | 'rotate' | 'scale'>('select');
+  const [activeMaskTool, setActiveMaskTool] = useState('rectangle');
   const canvasRef = useRef<HTMLDivElement>(null);
 
   const addToHistory = (action: string, newComponents: ComponentConfig[]) => {
@@ -117,6 +122,36 @@ const Editor = () => {
     if (selectedComponent === id) {
       setSelectedComponent(null);
     }
+  };
+
+  const duplicateComponent = (id: string) => {
+    const componentToDuplicate = components.find(c => c.id === id);
+    if (!componentToDuplicate) return;
+
+    const duplicatedComponent: ComponentConfig = {
+      ...componentToDuplicate,
+      id: `${componentToDuplicate.type}_${Date.now()}`,
+      position: {
+        x: componentToDuplicate.position.x + 20,
+        y: componentToDuplicate.position.y + 20
+      },
+      zIndex: Math.max(...components.map(c => c.zIndex || 0)) + 1
+    };
+
+    const newComponents = [...components, duplicatedComponent];
+    setComponents(newComponents);
+    setSelectedComponent(duplicatedComponent.id);
+    addToHistory(`Duplicated ${componentToDuplicate.type} component`, newComponents);
+    
+    toast({
+      title: "Component Duplicated",
+      description: `${componentToDuplicate.type} component has been duplicated.`,
+    });
+  };
+
+  const reorderComponents = (newComponents: ComponentConfig[]) => {
+    setComponents(newComponents);
+    addToHistory('Reordered components', newComponents);
   };
 
   const undo = () => {
@@ -236,7 +271,7 @@ const Editor = () => {
   if (previewMode) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-        <ComponentCanvas
+        <AdvancedCanvas
           ref={canvasRef}
           components={components}
           selectedComponent={null}
@@ -247,6 +282,7 @@ const Editor = () => {
           snapToGrid={false}
           previewMode={true}
           activeTool="select"
+          userTier={userTier}
         />
         <Button
           className="fixed top-4 right-4 z-50 bg-black/50 backdrop-blur-xl text-white border border-white/20"
@@ -339,24 +375,11 @@ const Editor = () => {
                 Preview
               </Button>
               
-              <Button
-                variant="outline"
-                size="sm"
-                className="glass-morphism border-white/20 text-white hover:bg-white/10 transition-all duration-300"
-                onClick={() => setExportTier('free')}
-              >
-                <Download className="w-4 h-4 mr-2" />
-                Export Free
-              </Button>
-              
-              <Button
-                size="sm"
-                className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white border-0 shadow-lg shadow-purple-500/25 transition-all duration-300 hover:scale-105"
-                onClick={() => setExportTier('pro')}
-              >
-                <Code className="w-4 h-4 mr-2" />
-                Export Pro
-              </Button>
+              <ExportEngine
+                components={components}
+                canvasRef={canvasRef}
+                userTier={userTier}
+              />
             </div>
           </div>
         </div>
@@ -403,7 +426,7 @@ const Editor = () => {
 
         {/* Canvas Area */}
         <div className="flex-1 relative overflow-hidden">
-          <ComponentCanvas
+          <AdvancedCanvas
             ref={canvasRef}
             components={components}
             selectedComponent={selectedComponent}
@@ -412,14 +435,15 @@ const Editor = () => {
             onDeleteComponent={deleteComponent}
             showGrid={showGrid}
             snapToGrid={snapToGrid}
-            previewMode={false}
+            previewMode={previewMode}
             activeTool={activeTool}
+            userTier={userTier}
           />
           
           {/* Transform Controls */}
-          {selectedComponentData && (
+          {selectedComponent && components.find(c => c.id === selectedComponent) && (
             <TransformControls
-              component={selectedComponentData}
+              component={components.find(c => c.id === selectedComponent)!}
               onUpdateComponent={updateComponent}
             />
           )}
@@ -432,33 +456,52 @@ const Editor = () => {
               <TabsTrigger value="properties">Properties</TabsTrigger>
               <TabsTrigger value="layers">Layers</TabsTrigger>
             </TabsList>
-            <TabsContent value="properties" className="h-[calc(100%-44px)]">
-              <ConfigurationPanel
-                component={selectedComponentData}
-                onUpdateComponent={updateComponent}
-              />
+            <TabsContent value="properties" className="h-[calc(100%-44px)] overflow-y-auto">
+              <div className="space-y-4 p-4">
+                <ConfigurationPanel
+                  component={components.find(c => c.id === selectedComponent) || null}
+                  onUpdateComponent={updateComponent}
+                />
+                
+                <BlendModesPanel
+                  component={components.find(c => c.id === selectedComponent) || null}
+                  onUpdateComponent={updateComponent}
+                  userTier={userTier}
+                />
+                
+                <MaskingPanel
+                  component={components.find(c => c.id === selectedComponent) || null}
+                  onUpdateComponent={updateComponent}
+                  userTier={userTier}
+                  activeMaskTool={activeMaskTool}
+                  onMaskToolChange={setActiveMaskTool}
+                />
+              </div>
             </TabsContent>
             <TabsContent value="layers" className="h-[calc(100%-44px)]">
-              <LayersPanel
+              <AdvancedLayersPanel
                 components={components}
                 selectedComponent={selectedComponent}
                 onSelectComponent={setSelectedComponent}
                 onUpdateComponent={updateComponent}
-                onReorderComponents={setComponents}
+                onReorderComponents={reorderComponents}
+                onDeleteComponent={deleteComponent}
+                onDuplicateComponent={duplicateComponent}
+                userTier={userTier}
               />
             </TabsContent>
           </Tabs>
         </div>
       </div>
 
-      {/* Export Modal */}
-      <ExportModal
-        isOpen={showExportModal}
-        onClose={() => setShowExportModal(false)}
-        components={components}
-        tier={exportTier}
-        canvasRef={canvasRef}
-      />
+      {/* Export Engine */}
+      {showExportModal && (
+        <ExportEngine
+          components={components}
+          canvasRef={canvasRef}
+          userTier={userTier}
+        />
+      )}
 
       {/* Creative Watermark */}
       <div className="fixed bottom-4 right-4 text-white/20 text-sm font-serif italic mix-blend-screen pointer-events-none z-50">

@@ -111,6 +111,16 @@ Each component follows a standard configuration interface:
 ```
 Changelog:
 - June 26, 2025. Initial setup
+- June 26, 2025. Comprehensive Photoshop-grade features implemented:
+  * Advanced Canvas with smart guides, transform handles, and real-time info
+  * Export Engine supporting PNG, HTML/CSS, React components, JSON schema, and CodePen
+  * Tier system (Free/Premium/Deluxe) with feature differentiation
+  * Advanced Layers Panel with grouping, alignment, and thumbnails
+  * Blend Modes Panel with 16 CSS blend modes and opacity controls
+  * Masking & Clipping system with rectangle, ellipse, polygon, and freeform tools
+  * Keyboard shortcuts (V=Move, R=Rotate, S=Scale, Ctrl+Z/Y=Undo/Redo)
+  * CI/CD pipeline with GitHub Actions for automated builds
+  * PNG export automation with Puppeteer
 ```
 
 ## User Preferences
