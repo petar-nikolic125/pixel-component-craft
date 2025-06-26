@@ -76,6 +76,9 @@ const EditorNew = () => {
   const [activeTool, setActiveTool] = useState<'select' | 'mask' | 'rotate' | 'scale'>('select');
   const [activeMaskTool, setActiveMaskTool] = useState('rectangle');
   const [useGridCanvas, setUseGridCanvas] = useState(true);
+  const [canvasBackground, setCanvasBackground] = useState('#1a1a2e');
+  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [showBackgroundSelector, setShowBackgroundSelector] = useState(false);
   const canvasRef = useRef<HTMLDivElement>(null);
 
   const addComponent = useCallback((type: ComponentConfig['type'], position?: { x: number; y: number }) => {

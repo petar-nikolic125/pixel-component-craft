@@ -18,7 +18,7 @@ interface GridCanvasProps {
   onUpdateComponent: (id: string, updates: Partial<ComponentConfig>) => void;
   onDeleteComponent: (id: string) => void;
   onAddComponent: (type: ComponentConfig['type'], position?: { x: number; y: number }) => void;
-  onReorderComponents: (components: ComponentConfig[]) => void;
+  onReorderComponents: (components: ComponentConfig[], action?: string, description?: string) => void;
   userTier: 'free' | 'premium' | 'deluxe';
 }
 
