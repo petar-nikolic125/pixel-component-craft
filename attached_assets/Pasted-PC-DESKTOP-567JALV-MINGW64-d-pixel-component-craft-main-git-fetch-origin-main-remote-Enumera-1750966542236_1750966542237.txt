@@ -1,0 +1,91 @@
+PC@DESKTOP-567JALV MINGW64 /d/pixel-component-craft (main)
+$ git fetch origin main
+remote: Enumerating objects: 36, done.
+remote: Counting objects: 100% (36/36), done.
+remote: Compressing objects: 100% (7/7), done.
+remote: Total 23 (delta 16), reused 23 (delta 16), pack-reused 0 (from 0)
+Unpacking objects: 100% (23/23), 586.67 KiB | 873.00 KiB/s, done.
+From https://github.com/petar-nikolic125/pixel-component-craft
+ * branch            main       -> FETCH_HEAD
+   96edb71..1ab8641  main       -> origin/main
+
+PC@DESKTOP-567JALV MINGW64 /d/pixel-component-craft (main)
+$ npm install
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: its-fine@2.0.0
+npm warn Found: react@18.3.1
+npm warn node_modules/react
+npm warn   react@"^18.3.1" from the root project
+npm warn   82 more (@floating-ui/react-dom, @hello-pangea/dnd, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^19.0.0" from its-fine@2.0.0
+npm warn node_modules/react-konva/node_modules/its-fine
+npm warn   its-fine@"^2.0.0" from react-konva@19.0.6
+npm warn   node_modules/react-konva
+npm warn
+npm warn Conflicting peer dependency: react@19.1.0
+npm warn node_modules/react
+npm warn   peer react@"^19.0.0" from its-fine@2.0.0
+npm warn   node_modules/react-konva/node_modules/its-fine
+npm warn     its-fine@"^2.0.0" from react-konva@19.0.6
+npm warn     node_modules/react-konva
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: react-reconciler@0.32.0
+npm warn Found: react@18.3.1
+npm warn node_modules/react
+npm warn   react@"^18.3.1" from the root project
+npm warn   82 more (@floating-ui/react-dom, @hello-pangea/dnd, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^19.1.0" from react-reconciler@0.32.0
+npm warn node_modules/react-konva/node_modules/react-reconciler
+npm warn   react-reconciler@"0.32.0" from react-konva@19.0.6
+npm warn   node_modules/react-konva
+npm warn
+npm warn Conflicting peer dependency: react@19.1.0
+npm warn node_modules/react
+npm warn   peer react@"^19.1.0" from react-reconciler@0.32.0
+npm warn   node_modules/react-konva/node_modules/react-reconciler
+npm warn     react-reconciler@"0.32.0" from react-konva@19.0.6
+npm warn     node_modules/react-konva
+npm warn deprecated npmlog@5.0.1: This package is no longer supported.
+npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+npm warn deprecated are-we-there-yet@2.0.0: This package is no longer supported.
+npm warn deprecated gauge@3.0.2: This package is no longer supported.
+
+up to date, audited 690 packages in 15s
+
+78 packages are looking for funding
+  run `npm fund` for details
+
+8 vulnerabilities (1 low, 7 moderate)
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+
+PC@DESKTOP-567JALV MINGW64 /d/pixel-component-craft (main)
+$ npm run dev
+
+> rest-express@1.0.0 dev
+> concurrently --kill-others "npm run dev:server" "npm run dev:client"
+
+[1] 
+[1] > rest-express@1.0.0 dev:client
+[1] > vite
+[1]
+[0]
+[0] > rest-express@1.0.0 dev:server
+[0] > NODE_ENV=development tsx server/index.ts
+[0]
+[0] 'NODE_ENV' is not recognized as an internal or external command,
+[0] operable program or batch file.
+[0] npm run dev:server exited with code 1
+--> Sending SIGTERM to other processes..
+[1] npm run dev:client exited with code 1
