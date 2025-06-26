@@ -76,9 +76,9 @@ const EditorNew = () => {
   const [activeTool, setActiveTool] = useState<'select' | 'mask' | 'rotate' | 'scale'>('select');
   const [activeMaskTool, setActiveMaskTool] = useState('rectangle');
   const [useGridCanvas, setUseGridCanvas] = useState(true);
-  const [canvasBackground, setCanvasBackground] = useState('#1a1a2e');
+  const [canvasBackground, setCanvasBackground] = useState('linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%)');
   const [isDarkMode, setIsDarkMode] = useState(true);
-  const [showBackgroundSelector, setShowBackgroundSelector] = useState(false);
+  const [showBackgroundChooser, setShowBackgroundChooser] = useState(false);
   const canvasRef = useRef<HTMLDivElement>(null);
 
   const addComponent = useCallback((type: ComponentConfig['type'], position?: { x: number; y: number }) => {
@@ -248,6 +248,14 @@ const EditorNew = () => {
               >
                 <Redo className="w-4 h-4" />
               </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setShowBackgroundChooser(!showBackgroundChooser)}
+                title="Change Background"
+              >
+                <Palette className="w-4 h-4" />
+              </Button>
               <div className="text-xs text-gray-500 ml-2">
                 {currentIndex + 1} / {history.length}
               </div>
@@ -389,6 +397,10 @@ const EditorNew = () => {
                 onAddComponent={addComponent}
                 onReorderComponents={reorderComponents}
                 userTier={userTier}
+                canvasBackground={canvasBackground}
+                onBackgroundChange={setCanvasBackground}
+                showBackgroundChooser={showBackgroundChooser}
+                onToggleBackgroundChooser={() => setShowBackgroundChooser(!showBackgroundChooser)}
               />
             ) : (
               <EnhancedCanvas
@@ -402,6 +414,10 @@ const EditorNew = () => {
                 snapToGrid={snapToGrid}
                 activeTool={activeTool}
                 userTier={userTier}
+                canvasBackground={canvasBackground}
+                onBackgroundChange={setCanvasBackground}
+                showBackgroundChooser={showBackgroundChooser}
+                onToggleBackgroundChooser={() => setShowBackgroundChooser(!showBackgroundChooser)}
               />
             )}
           </div>

@@ -1,6 +1,7 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { ComponentConfig } from '../../pages/Editor';
 import { ComponentRenderer } from './ComponentRenderer';
+import { BackgroundChooser } from './BackgroundChooser';
 import { Plus, Move, Trash2 } from 'lucide-react';
 
 interface GridRow {
@@ -20,6 +21,10 @@ interface GridCanvasProps {
   onAddComponent: (type: ComponentConfig['type'], position?: { x: number; y: number }) => void;
   onReorderComponents: (components: ComponentConfig[], action?: string, description?: string) => void;
   userTier: 'free' | 'premium' | 'deluxe';
+  canvasBackground?: string;
+  onBackgroundChange?: (background: string) => void;
+  showBackgroundChooser?: boolean;
+  onToggleBackgroundChooser?: () => void;
 }
 
 export const GridCanvas: React.FC<GridCanvasProps> = ({
@@ -30,7 +35,11 @@ export const GridCanvas: React.FC<GridCanvasProps> = ({
   onDeleteComponent,
   onAddComponent,
   onReorderComponents,
-  userTier
+  userTier,
+  canvasBackground = 'linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%)',
+  onBackgroundChange,
+  showBackgroundChooser = false,
+  onToggleBackgroundChooser
 }) => {
   const [rows, setRows] = useState<GridRow[]>([]);
   const [draggedComponent, setDraggedComponent] = useState<string | null>(null);
@@ -254,7 +263,20 @@ export const GridCanvas: React.FC<GridCanvasProps> = ({
   };
 
   return (
-    <div ref={canvasRef} className="flex-1 bg-white overflow-auto">
+    <div 
+      ref={canvasRef} 
+      className="flex-1 overflow-auto relative" 
+      style={{ background: canvasBackground }}
+    >
+      {/* Background Chooser */}
+      {showBackgroundChooser && onBackgroundChange && onToggleBackgroundChooser && (
+        <BackgroundChooser
+          currentBackground={canvasBackground}
+          onBackgroundChange={onBackgroundChange}
+          onClose={onToggleBackgroundChooser}
+        />
+      )}
+      
       <div className="max-w-6xl mx-auto p-8 space-y-8">
         {/* Canvas Header */}
         <div className="flex items-center justify-between">

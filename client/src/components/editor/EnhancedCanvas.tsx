@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect, useCallback, forwardRef } from 'react';
 import { ComponentConfig } from '@/pages/Editor';
 import { ComponentRenderer } from './ComponentRenderer';
+import { BackgroundChooser } from './BackgroundChooser';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 
@@ -39,6 +40,10 @@ interface EnhancedCanvasProps {
   snapToGrid: boolean;
   activeTool: 'select' | 'rotate' | 'scale' | 'mask';
   userTier: 'free' | 'premium' | 'deluxe';
+  canvasBackground?: string;
+  onBackgroundChange?: (background: string) => void;
+  showBackgroundChooser?: boolean;
+  onToggleBackgroundChooser?: () => void;
 }
 
 const GRID_SIZE = 4;
@@ -55,7 +60,11 @@ export const EnhancedCanvas = forwardRef<HTMLDivElement, EnhancedCanvasProps>(({
   showGrid,
   snapToGrid,
   activeTool,
-  userTier
+  userTier,
+  canvasBackground = 'linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%)',
+  onBackgroundChange,
+  showBackgroundChooser = false,
+  onToggleBackgroundChooser
 }, ref) => {
   const canvasRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
@@ -360,12 +369,28 @@ export const EnhancedCanvas = forwardRef<HTMLDivElement, EnhancedCanvasProps>(({
   }, [onSelectComponent]);
 
   return (
-    <div className="relative h-full bg-slate-950 overflow-auto">
+    <div 
+      className="relative h-full overflow-auto" 
+      style={{ background: canvasBackground }}
+    >
+      {/* Background Chooser */}
+      {showBackgroundChooser && onBackgroundChange && onToggleBackgroundChooser && (
+        <BackgroundChooser
+          currentBackground={canvasBackground}
+          onBackgroundChange={onBackgroundChange}
+          onClose={onToggleBackgroundChooser}
+        />
+      )}
+      
       {/* Canvas */}
       <div
         ref={canvasRef}
-        className="relative min-h-full bg-gradient-to-br from-slate-900 to-slate-950"
-        style={{ width: canvasSize.width, height: Math.max(canvasSize.height, 1000) }}
+        className="relative min-h-full"
+        style={{ 
+          width: canvasSize.width, 
+          height: Math.max(canvasSize.height, 1000),
+          background: 'transparent'
+        }}
         onClick={handleCanvasClick}
         onDragOver={handleDragOver}
         onDrop={handleDrop}
