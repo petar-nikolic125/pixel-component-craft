@@ -1,13 +1,13 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
-import { AdvancedCanvas } from '@/components/editor/AdvancedCanvas';
+import { EnhancedCanvas } from '@/components/editor/EnhancedCanvas';
 import { ComponentLibrary } from '@/components/editor/ComponentLibrary';
-import { ConfigurationPanel } from '@/components/editor/ConfigurationPanel';
-import { AdvancedLayersPanel } from '@/components/editor/AdvancedLayersPanel';
+import { PropertiesPanel } from '@/components/editor/PropertiesPanel';
+import { LayersTreePanel } from '@/components/editor/LayersTreePanel';
+import { EditorToolbar } from '@/components/editor/EditorToolbar';
 import { HistoryPanel } from '@/components/editor/HistoryPanel';
 import { StylePresetsPanel } from '@/components/editor/StylePresetsPanel';
-import { TransformControls } from '@/components/editor/TransformControls';
 import { ExportEngine } from '@/components/editor/ExportEngine';
 import { BlendModesPanel } from '@/components/editor/BlendModesPanel';
 import { MaskingPanel } from '@/components/editor/MaskingPanel';
@@ -69,6 +69,7 @@ const Editor = () => {
   const [showGrid, setShowGrid] = useState(true);
   const [snapToGrid, setSnapToGrid] = useState(true);
   const [previewMode, setPreviewMode] = useState(false);
+  const [sidebarTab, setSidebarTab] = useState<'library' | 'layers' | 'properties'>('library');
   const [activeTool, setActiveTool] = useState<'select' | 'mask' | 'rotate' | 'scale'>('select');
   const [activeMaskTool, setActiveMaskTool] = useState('rectangle');
   const canvasRef = useRef<HTMLDivElement>(null);
@@ -279,16 +280,16 @@ const Editor = () => {
   if (previewMode) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-        <AdvancedCanvas
+        <EnhancedCanvas
           ref={canvasRef}
           components={components}
           selectedComponent={null}
           onSelectComponent={() => {}}
           onUpdateComponent={() => {}}
           onDeleteComponent={() => {}}
+          onAddComponent={() => {}}
           showGrid={false}
           snapToGrid={false}
-          previewMode={true}
           activeTool="select"
           userTier={userTier}
         />
@@ -434,27 +435,19 @@ const Editor = () => {
 
         {/* Canvas Area */}
         <div className="flex-1 relative overflow-hidden">
-          <AdvancedCanvas
+          <EnhancedCanvas
             ref={canvasRef}
             components={components}
             selectedComponent={selectedComponent}
             onSelectComponent={setSelectedComponent}
             onUpdateComponent={updateComponent}
             onDeleteComponent={deleteComponent}
+            onAddComponent={addComponent}
             showGrid={showGrid}
             snapToGrid={snapToGrid}
-            previewMode={previewMode}
             activeTool={activeTool}
             userTier={userTier}
           />
-          
-          {/* Transform Controls */}
-          {selectedComponent && components.find(c => c.id === selectedComponent) && (
-            <TransformControls
-              component={components.find(c => c.id === selectedComponent)!}
-              onUpdateComponent={updateComponent}
-            />
-          )}
         </div>
 
         {/* Right Sidebar */}
@@ -464,30 +457,15 @@ const Editor = () => {
               <TabsTrigger value="properties">Properties</TabsTrigger>
               <TabsTrigger value="layers">Layers</TabsTrigger>
             </TabsList>
-            <TabsContent value="properties" className="h-[calc(100%-44px)] overflow-y-auto">
-              <div className="space-y-4 p-4">
-                <ConfigurationPanel
-                  component={components.find(c => c.id === selectedComponent) || null}
-                  onUpdateComponent={updateComponent}
-                />
-                
-                <BlendModesPanel
-                  component={components.find(c => c.id === selectedComponent) || null}
-                  onUpdateComponent={updateComponent}
-                  userTier={userTier}
-                />
-                
-                <MaskingPanel
-                  component={components.find(c => c.id === selectedComponent) || null}
-                  onUpdateComponent={updateComponent}
-                  userTier={userTier}
-                  activeMaskTool={activeMaskTool}
-                  onMaskToolChange={setActiveMaskTool}
-                />
-              </div>
+            <TabsContent value="properties" className="h-[calc(100%-44px)]">
+              <PropertiesPanel
+                component={components.find(c => c.id === selectedComponent) || null}
+                onUpdateComponent={updateComponent}
+                userTier={userTier}
+              />
             </TabsContent>
             <TabsContent value="layers" className="h-[calc(100%-44px)]">
-              <AdvancedLayersPanel
+              <LayersTreePanel
                 components={components}
                 selectedComponent={selectedComponent}
                 onSelectComponent={setSelectedComponent}

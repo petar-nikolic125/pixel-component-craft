@@ -1,0 +1,75 @@
+# Context  
+You are Replit AI most cantankerous UI/UX maestro on the planet. You just dropped into a Replit instance running our half-baked ComponentForge editor—and it’s a goddamn nightmare. The library shows only one component at a time, the canvas is empty, snapping is nonexistent, and every interaction feels like wrestling a greased pig. You despise sloppy interfaces and demand software that works like WordPress’s block editor—but twelve times better.
+
+# Task: Total Editor Overhaul  
+Deliver a scathing, detail-obsessed spec for how the ComponentForge editor must be **completely refurbished** so it feels like an industry-leading page builder.  
+
+## 1. Library & Block Inserter  
+- **Grid of Thumbnails**  
+  - Show at least 6–8 component cards per view, grouped by category (Hero, Buttons, Features, Forms, Media, Widgets, Navigation).  
+  - Each card: 120×120 px preview, title, category tag, hover highlight.  
+  - Infinite scroll or pagination dots—no more single-item trolling.
+- **Search & Filters**  
+  - Sticky search bar on top with live filtering.  
+  - Category tabs below search: click to toggle filter states.  
+- **Drag-to-Insert**  
+  - Dragging a card shows a preview ghost on the canvas; drop to insert.  
+  - On hover over drop zones, highlight valid snap targets in bright teal.
+
+## 2. Canvas & Snapping  
+- **Snap Zones & Chains**  
+  - Implement component “magnetic edges”: boundaries snap to 4-pt grid, container edges, and sibling edges.  
+  - Show purple smart guides at centers, edges, thirds—WordPress style but instant and bullet-proof.  
+- **Chained Placement**  
+  - After dropping one block under another, automatically stack and pad them with your global spacing variables.  
+  - Offer a “chain next” tooltip so users can click to append the next component in the same flow.
+- **Overflow & Scroll**  
+  - Canvas expands vertically; show a thin scroll bar that jumps in 100 px increments.
+
+## 3. Toolbar & Modes  
+- **Top Toolbar**  
+  - Bold icons for Select (V), Rotate (R), Scale (S), Mask (M), Snap Grid toggle (G), Undo (Ctrl+Z), Redo (Ctrl+Y).  
+  - Each button: tooltip with shortcut, active state, and disabled state if no selection.
+- **WordPress-Style Block Controls**  
+  - On selection, a floating inspector bar appears above the block with quick actions: Move Up, Move Down, Duplicate, Delete, Convert to Container.
+
+## 4. Properties & Layers Panel  
+- **Dual-Tab Sidebar**  
+  - **Layers Tab**: shows entire document tree. Draggable reorder, collapse/expand groups, rename, lock/visibility toggles.  
+  - **Properties Tab**: context-sensitive controls for the selected block (content, style, animation).
+- **Resizing Handles & Numeric Input**  
+  - Eight resize handles; drag updates the live preview.  
+  - Below canvas, show numeric fields for X, Y, Width, Height, Rotation—editable with arrow keys.
+
+## 5. WordPress Block Editor Parity & Improvements  
+- **Recreating Gutenberg’s Ease**  
+  - **Inline Inserter**: press “/” inside text blocks to summon the quick-insert menu.  
+  - **Slash Commands**: type “/button” to insert a button component directly.  
+- **Better Than WP**  
+  - Real-time previews in the inserter panel: hover a block name, see it rendered on the canvas behind a translucent overlay.  
+  - No full-page refreshes; everything updates via React state.
+
+## 6. Snap & Chain Visuals  
+- **Magnetic Edge Animation**  
+  - When two edges snap, animate a quick glow between them.  
+  - Show a small tooltip “Snapped to Hero Section bottom edge” that fades in/out.
+
+## 7. Performance & Feedback  
+- **Batch Render**  
+  - Use a WebGL layer so dragging dozens of components never stutters.  
+  - Lazy-load off-screen panels and templates.
+
+## 8. Watermark Reminder  
+- Keep **“Petar Nikolić designed”** in cursive silver at the bottom-right of the editor at all times, above any content, but never interfering with controls.
+
+---
+
+**Implement this spec in Replit** by overhauling:
+- `/frontend/src/components/LibraryGrid.tsx`  
+- `/frontend/src/components/Canvas.tsx` & snapping utils  
+- `/frontend/src/components/Toolbar.tsx`  
+- `/frontend/src/components/Sidebar/Layers.tsx` & `Properties.tsx`  
+- Global CSS/Tailwind config for smart guides, grid, and spacing variables  
+
+Give me a pixel-perfect, WordPress-inspired editor that’s intuitive, comprehensive, and polished to obsession.  
+

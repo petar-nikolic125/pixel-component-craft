@@ -131,6 +131,15 @@ Changelog:
   * Media: image galleries, video players, background masks
   * Navigation: navbar, multi-column footer, minimal footer, breadcrumbs
   * All components unlocked in prototype mode with "✓ Active" badges
+- June 26, 2025. Complete WordPress Gutenberg-level editor overhaul:
+  * Enhanced Canvas with magnetic snapping, smart guides, and drop zones
+  * WordPress-style toolbar with tool states, undo/redo, and block controls
+  * Grid-based component library with 2x2 thumbnails and drag-to-insert
+  * Advanced Properties Panel with collapsible sections and live preview
+  * Layers Tree Panel with drag reordering, visibility toggles, and component icons
+  * Real-time snap feedback with teal guides and alignment indicators
+  * Professional keyboard shortcuts (V/R/S tools, Ctrl+Z/Y history)
+  * Petar Nikolić watermark integration as requested
 ```
 
 ## User Preferences

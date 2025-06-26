@@ -417,6 +417,7 @@ const categories = ['All', 'Hero', 'Buttons', 'Features', 'Testimonials', 'Forms
 export const ComponentLibrary: React.FC<ComponentLibraryProps> = ({ onAddComponent }) => {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
+  const [draggedComponent, setDraggedComponent] = useState<string | null>(null);
 
   const filteredComponents = componentTypes.filter(component => {
     const matchesCategory = selectedCategory === 'All' || component.category === selectedCategory;
@@ -425,99 +426,140 @@ export const ComponentLibrary: React.FC<ComponentLibraryProps> = ({ onAddCompone
     return matchesCategory && matchesSearch;
   });
 
-  return (
-    <div className="h-full flex flex-col">
-      {/* Header */}
-      <div className="p-6 border-b border-white/10">
-        <h2 className="text-lg font-semibold text-white mb-4">Component Library</h2>
-        
-        {/* Search */}
-        <div className="relative mb-4">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-slate-400" />
-          <input
-            type="text"
-            placeholder="Search components..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 bg-slate-800/50 border border-white/20 rounded-lg text-white placeholder-slate-400 focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 transition-all duration-200"
-          />
-        </div>
+  const handleDragStart = (e: React.DragEvent, componentType: string) => {
+    e.dataTransfer.setData('component-type', componentType);
+    setDraggedComponent(componentType);
+    e.dataTransfer.effectAllowed = 'copy';
+  };
 
-        {/* Categories */}
-        <div className="flex flex-wrap gap-2">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => setSelectedCategory(category)}
-              className={`px-3 py-1.5 text-xs font-medium rounded-full transition-all duration-200 ${
-                selectedCategory === category
-                  ? 'bg-purple-500 text-white shadow-lg shadow-purple-500/25'
-                  : 'bg-slate-800/50 text-slate-300 hover:bg-slate-700/50 hover:text-white'
-              }`}
-            >
-              {category}
-            </button>
-          ))}
+  const handleDragEnd = () => {
+    setDraggedComponent(null);
+  };
+
+  return (
+    <div className="h-full flex flex-col bg-slate-900/95 backdrop-blur-xl">
+      {/* Sticky Header */}
+      <div className="sticky top-0 z-10 bg-slate-900/95 backdrop-blur-xl border-b border-white/10">
+        <div className="p-4">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-lg font-bold text-white">Block Library</h2>
+            <div className="text-xs text-slate-400 bg-slate-800/50 px-2 py-1 rounded">
+              {filteredComponents.length} blocks
+            </div>
+          </div>
+          
+          {/* Search Bar */}
+          <div className="relative mb-4">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-slate-400" />
+            <input
+              type="text"
+              placeholder="Search components or type '/' for quick insert..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full pl-10 pr-4 py-3 bg-slate-800/50 border border-white/20 rounded-lg text-white placeholder-slate-400 focus:border-teal-400 focus:ring-2 focus:ring-teal-400/20 transition-all duration-200 text-sm"
+            />
+          </div>
+
+          {/* Category Tabs */}
+          <div className="flex gap-1 overflow-x-auto scrollbar-hide">
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() => setSelectedCategory(category)}
+                className={`px-4 py-2 text-xs font-medium rounded-lg whitespace-nowrap transition-all duration-200 ${
+                  selectedCategory === category
+                    ? 'bg-teal-500 text-white shadow-lg shadow-teal-500/25 scale-105'
+                    : 'bg-slate-800/50 text-slate-300 hover:bg-slate-700/70 hover:text-white hover:scale-102'
+                }`}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
-      {/* Components Grid */}
-      <div className="flex-1 overflow-y-auto p-6 space-y-4">
-        {filteredComponents.map((component) => {
-          const IconComponent = component.icon;
-          
-          return (
-            <Card
-              key={component.type}
-              className="bg-slate-800/30 backdrop-blur-xl border-white/10 hover:border-white/30 transition-all duration-300 cursor-pointer group hover:scale-[1.02] hover:shadow-lg hover:shadow-purple-500/10"
-              onClick={() => onAddComponent(component.type)}
-            >
-              <div className="p-4">
-                {/* Preview */}
-                <div className={`w-full h-20 rounded-lg mb-3 flex items-center justify-center border border-white/10 group-hover:border-white/20 transition-all duration-300 ${component.preview}`}>
-                  <IconComponent className="w-8 h-8 text-white/60 group-hover:text-white/80 transition-colors duration-300" />
-                </div>
-                
-                {/* Content */}
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between">
-                    <h3 className="font-semibold text-white group-hover:text-purple-300 transition-colors duration-300">
-                      {component.name}
-                    </h3>
-                    <div className="flex items-center gap-2">
-                      <span className="text-xs px-2 py-1 bg-green-500/20 text-green-400 rounded-full border border-green-500/30">
-                        ✓ Active
+      {/* Component Grid */}
+      <div className="flex-1 overflow-y-auto">
+        <div className="p-4">
+          <div className="grid grid-cols-2 gap-3">
+            {filteredComponents.map((component) => {
+              const IconComponent = component.icon;
+              
+              return (
+                <div
+                  key={component.type}
+                  draggable
+                  onDragStart={(e) => handleDragStart(e, component.type)}
+                  onDragEnd={handleDragEnd}
+                  onClick={() => onAddComponent(component.type)}
+                  className={`group relative bg-slate-800/40 backdrop-blur-sm border border-white/10 rounded-xl p-3 cursor-pointer transition-all duration-300 hover:border-teal-400/50 hover:shadow-lg hover:shadow-teal-500/10 hover:scale-[1.02] ${
+                    draggedComponent === component.type ? 'opacity-50 scale-95' : ''
+                  }`}
+                >
+                  {/* Preview Thumbnail */}
+                  <div className={`w-full h-20 rounded-lg mb-3 flex items-center justify-center border border-white/10 group-hover:border-teal-400/30 transition-all duration-300 ${component.preview} relative overflow-hidden`}>
+                    <IconComponent className="w-6 h-6 text-white/70 group-hover:text-white transition-colors duration-300 z-10" />
+                    
+                    {/* Hover Overlay */}
+                    <div className="absolute inset-0 bg-teal-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    
+                    {/* Active Badge */}
+                    <div className="absolute top-1 right-1">
+                      <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                    </div>
+                  </div>
+                  
+                  {/* Component Info */}
+                  <div className="space-y-1">
+                    <div className="flex items-start justify-between">
+                      <h3 className="text-sm font-semibold text-white group-hover:text-teal-300 transition-colors duration-300 leading-tight">
+                        {component.name}
+                      </h3>
+                    </div>
+                    <p className="text-xs text-slate-400 group-hover:text-slate-300 transition-colors duration-300 line-clamp-2">
+                      {component.description}
+                    </p>
+                    
+                    {/* Category Tag */}
+                    <div className="pt-1">
+                      <span className="inline-block text-xs px-2 py-0.5 bg-slate-700/50 text-slate-400 rounded group-hover:bg-teal-500/20 group-hover:text-teal-300 transition-all duration-300">
+                        {component.category}
                       </span>
                     </div>
                   </div>
-                  <p className="text-sm text-slate-400 group-hover:text-slate-300 transition-colors duration-300">
-                    {component.description}
-                  </p>
-                </div>
-              </div>
-            </Card>
-          );
-        })}
 
-        {filteredComponents.length === 0 && (
-          <div className="text-center py-8">
-            <Grid3X3 className="w-12 h-12 mx-auto text-slate-600 mb-4" />
-            <p className="text-slate-400">No components found</p>
-            <p className="text-xs text-slate-500 mt-1">Try adjusting your search or filters</p>
+                  {/* Drag Indicator */}
+                  <div className="absolute top-2 left-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="w-1 h-1 bg-teal-400 rounded-full" />
+                    <div className="w-1 h-1 bg-teal-400 rounded-full mt-0.5" />
+                    <div className="w-1 h-1 bg-teal-400 rounded-full mt-0.5" />
+                  </div>
+                </div>
+              );
+            })}
           </div>
-        )}
+
+          {filteredComponents.length === 0 && (
+            <div className="text-center py-12">
+              <Grid3X3 className="w-16 h-16 mx-auto text-slate-600 mb-4" />
+              <h3 className="text-slate-400 font-medium mb-2">No components found</h3>
+              <p className="text-xs text-slate-500">Try adjusting your search or category filter</p>
+            </div>
+          )}
+        </div>
       </div>
 
-      {/* Footer */}
-      <div className="p-6 border-t border-white/10">
-        <div className="text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-green-500/20 text-green-400 rounded-full text-xs font-medium mb-3">
-            <Crown className="w-3 h-3" />
-            Prototype Mode - All Features Unlocked
+      {/* Footer Status */}
+      <div className="border-t border-white/10 p-4">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+            <span className="text-xs text-green-400 font-medium">All Features Active</span>
           </div>
-          <p className="text-xs text-slate-400">
-            {filteredComponents.length} components available for testing
-          </p>
+          <div className="text-xs text-slate-500">
+            Prototype Mode
+          </div>
         </div>
       </div>
     </div>
