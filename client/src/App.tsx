@@ -1,9 +1,14 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,            // ⬅️ added
+} from "react-router-dom";
+
 import Index from "./pages/Index";
 import EditorNewProfessional from "./pages/EditorNewProfessional";
 import Features from "./pages/Features";
@@ -12,31 +17,33 @@ import Templates from "./pages/Templates";
 import Docs from "./pages/Docs";
 import SignIn from "./pages/SignIn";
 import GettingStarted from "./pages/GettingStarted";
-import NotFound from "./pages/NotFound";
+// (NotFound import removed—handled by Navigate)
 
 const queryClient = new QueryClient();
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/editor" element={<EditorNewProfessional />} />
-          <Route path="/features" element={<Features />} />
-          <Route path="/pricing" element={<Pricing />} />
-          <Route path="/templates" element={<Templates />} />
-          <Route path="/docs" element={<Docs />} />
-          <Route path="/sign-in" element={<SignIn />} />
-          <Route path="/getting-started" element={<GettingStarted />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            {/* finished pages */}
+            <Route path="/" element={<Index />} />
+            <Route path="/editor" element={<EditorNewProfessional />} />
+            <Route path="/features" element={<Features />} />
+            <Route path="/pricing" element={<Pricing />} />
+            <Route path="/templates" element={<Templates />} />
+            <Route path="/docs" element={<Docs />} />
+            <Route path="/sign-in" element={<SignIn />} />
+            <Route path="/getting-started" element={<GettingStarted />} />
+
+            {/* catch-all: any unknown route → home */}
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
 );
 
 export default App;
