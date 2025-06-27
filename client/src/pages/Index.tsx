@@ -447,7 +447,7 @@ export default function Index() {
                             gradient="from-fuchsia-500 to-sky-500"
                         />
                         <CtaButton
-                            to="/docs"
+                            to="#docs"
                             icon={<Code className="w-5 h-5" />}
                             text="View Docs"
                             gradient="from-slate-900 to-slate-900"
@@ -742,28 +742,60 @@ function CtaButton({
     gradient: string;
     outline?: boolean;
 }) {
+    const handleClick = (e: React.MouseEvent) => {
+        if (to.startsWith('#')) {
+            e.preventDefault();
+            const sectionId = to.replace('#', '');
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+    };
+
+    const buttonContent = (
+        <>
+            <span
+                className={`absolute inset-0 rounded-full ${
+                    outline
+                        ? "border border-white/20 bg-white/5 hover:bg-white/10"
+                        : `bg-gradient-to-br ${gradient} hover:brightness-110`
+                }`}
+            />
+            <span className="relative z-10 flex items-center gap-2 whitespace-nowrap">
+                {icon}
+                {text}
+                {/* subtle arrow animation */}
+                <ArrowRight className="w-4 h-4 translate-x-0 group-hover:translate-x-1 transition-transform" />
+            </span>
+            <span
+                aria-hidden
+                className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/60 to-transparent rotate-12 blur-md animate-[slide_2.8s_linear_infinite] motion-reduce:hidden"
+            />
+        </>
+    );
+
+    if (to.startsWith('#')) {
+        return (
+            <a
+                href={to}
+                onClick={handleClick}
+                className="relative overflow-hidden w-full sm:w-auto justify-center px-8 sm:px-9 py-4 rounded-full font-semibold flex items-center gap-3 transition-transform active:scale-95 cursor-pointer"
+            >
+                {buttonContent}
+            </a>
+        );
+    }
+
     return (
         <Link
             to={to}
             className="relative overflow-hidden w-full sm:w-auto justify-center px-8 sm:px-9 py-4 rounded-full font-semibold flex items-center gap-3 transition-transform active:scale-95"
         >
-      <span
-          className={`absolute inset-0 rounded-full ${
-              outline
-                  ? "border border-white/20 bg-white/5 hover:bg-white/10"
-                  : `bg-gradient-to-br ${gradient} hover:brightness-110`
-          }`}
-      />
-            <span className="relative z-10 flex items-center gap-2 whitespace-nowrap">
-        {icon}
-                {text}
-                {/* subtle arrow animation */}
-                <ArrowRight className="w-4 h-4 translate-x-0 group-hover:translate-x-1 transition-transform" />
-      </span>
-            <span
-                aria-hidden
-                className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/60 to-transparent rotate-12 blur-md animate-[slide_2.8s_linear_infinite] motion-reduce:hidden"
-            />
+            {buttonContent}
         </Link>
     );
 }
