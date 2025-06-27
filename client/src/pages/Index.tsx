@@ -35,7 +35,9 @@ const dots = [
 /* — tilt utility — */
 function useTilt(el: React.RefObject<HTMLElement>, max = 15) {
     useEffect(() => {
-        if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const small  = matchMedia("(max-width: 640px)").matches;
+        if (reduce || small) return;
         const onScroll = () => {
             if (!el.current) return;
             const { top } = el.current.getBoundingClientRect();
@@ -106,12 +108,14 @@ export default function Index() {
                     <header ref={heroTxt} className="will-change-transform motion-reduce:transform-none">
                         <h1
                             id="hero-heading"
-                            className="text-[2.8rem] sm:text-6xl md:text-7xl lg:text-8xl
-                         font-extrabold leading-tight tracking-tight
+                            className="font-extrabold leading-tight tracking-tight
                          bg-gradient-to-r from-white via-gray-100 to-white
                          bg-clip-text text-transparent
                          drop-shadow-[0_8px_30px_rgba(0,0,0,0.6)]"
-                            style={{ WebkitTextStroke: "1px rgba(255,255,255,0.12)" }}
+                            style={{
+                                fontSize: "clamp(2.4rem,8vw,6rem)",
+                                WebkitTextStroke: "1px rgba(255,255,255,0.12)",
+                            }}
                         >
                             Craft&nbsp;Your&nbsp;Digital
                             <br />
@@ -132,7 +136,8 @@ export default function Index() {
 
                     {/* CTA glass-bar */}
                     <div
-                        className="relative mx-auto flex w-max gap-6 px-10 py-6 rounded-full
+                        className="relative mx-auto flex flex-col xs:flex-row w-full xs:w-max
+                       gap-4 xs:gap-6 px-6 xs:px-10 py-6 rounded-full
                        bg-white/5 backdrop-blur-md border border-white/10
                        shadow-[0_12px_45px_rgba(0,0,0,0.35)]
                        after:absolute after:inset-0 after:rounded-full

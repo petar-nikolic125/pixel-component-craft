@@ -17,6 +17,18 @@ export default function HeroFX({
     anchor: React.RefObject<HTMLElement>;
     parallax?: number;
 }) {
+    const reduce =
+        typeof window !== "undefined" &&
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const small =
+        typeof window !== "undefined" &&
+        window.matchMedia("(max-width: 640px)").matches;
+
+    if (reduce || small) {
+        return (
+            <div className="fixed inset-0 pointer-events-none z-0 bg-gradient-to-br from-purple-900/40 via-sky-900/20 to-purple-900/40" />
+        );
+    }
     /* ── create once ─────────────────────────────────────────────────────── */
     const mount = useRef<HTMLDivElement | null>(null);
     if (!mount.current) {
@@ -62,6 +74,7 @@ export default function HeroFX({
 
     /* ── 3. parallax shift on pointermove (optional) ───────────────────────── */
     useEffect(() => {
+        if (reduce || small) return;
         const layer = mount.current!;
         const move  = (e: MouseEvent) => {
             const { innerWidth:w, innerHeight:h } = window;
@@ -71,7 +84,7 @@ export default function HeroFX({
         };
         window.addEventListener("pointermove", move);
         return () => window.removeEventListener("pointermove", move);
-    }, [parallax]);
+    }, [parallax, reduce, small]);
 
     /* ── render ThreeBurst into the portal ─────────────────────────────────── */
     return createPortal(<ThreeBurst />, mount.current);
