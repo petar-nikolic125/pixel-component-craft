@@ -1,0 +1,311 @@
+Failed to load resource: net::ERR_UNSAFE_REDIRECT
+index.ts:46 Failed to fetch
+(anonymous) @ index.ts:46
+standalone.ts:45 [analytics.js] Failed to load Analytics.js TypeError: Failed to fetch
+    at o (sdk.min.js:1:23763)
+    at index.ts:34:26
+    at tslib.es6.js:103:23
+    at Object.next (tslib.es6.js:108:37)
+    at tslib.es6.js:80:8
+    at new Promise (<anonymous>)
+    at u (tslib.es6.js:72:27)
+    at re (index.ts:239:4)
+    at index.ts:338:7
+(anonymous) @ standalone.ts:45
+api.segment.io/v1/m:1 
+            
+            
+           Failed to load resource: net::ERR_UNSAFE_REDIRECT
+_app-ec33739ed5a06c30.js:38 Error sending segment performance metrics TypeError: Failed to fetch
+    at o (sdk.min.js:1:23763)
+    at t.<anonymous> (remote-metrics.ts:138:12)
+    at tslib.es6.js:103:23
+    at Object.next (tslib.es6.js:108:37)
+    at tslib.es6.js:80:8
+    at new Promise (<anonymous>)
+    at u (tslib.es6.js:72:27)
+    at i.148.t.send (sdk.min.js:1:22021)
+    at t.<anonymous> (remote-metrics.ts:125:16)
+    at tslib.es6.js:103:23
+(anonymous) @ _app-ec33739ed5a06c30.js:38
+_app-ec33739ed5a06c30.js:38 
+      /////////////////////
+   ///////////////////////////
+  ////////@@@@@@@//////////////
+  ////////@@@@@@@//////////////
+  ////////@@@@@@@//////////////        Curious and driven?
+  ///////////////@@@@@@@///////        Work with us!
+  ///////////////@@@@@@@///////
+  ///////////////@@@@@@@///////        https://join.replit.com/hack.with.us
+  ////////@@@@@@@//////////////
+  ////////@@@@@@@//////////////
+  ////////@@@@@@#//////////////
+   ///////////////////////////
+      /////////////////////
+      
+_app-ec33739ed5a06c30.js:38 [LaunchDarkly] Error fetching flag settings: network error (Error)
+(anonymous) @ _app-ec33739ed5a06c30.js:38
+app.launchdarkly.com/sdk/evalx/62b35a865152ab14c5942820/contexts/eyJrZXkiOiI2ZTIzNWE3NS1lNWY1LTQ0ZmYtOGVkZC00ZWMzZTYwYTZmYzEiLCJraW5kIjoidXNlciIsImFub255bW91cyI6dHJ1ZX0:1 
+            
+            
+           Failed to load resource: net::ERR_UNSAFE_REDIRECT
+_app-ec33739ed5a06c30.js:38 [LaunchDarkly] network error (Error)
+(anonymous) @ _app-ec33739ed5a06c30.js:38
+app.launchdarkly.com/sdk/evalx/62b35a865152ab14c5942820/contexts/eyJrZXkiOiI0NDMzMjY5MCIsImtpbmQiOiJ1c2VyIiwibmFtZSI6Inhnb25naXZlaXR0b3lhMiIsInJvbGVzIjpbXSwiZW1haWwiOiJ4Lmdvbi5naXZlLml0LnRvLnlhMjNAZ21haWwuY29tIiwidGltZV9jcmVhdGVkIjoxNzUxMDM3MDQ0MjI5LCJfbWV0YSI6eyJwcml2YXRlQXR0cmlidXRlcyI6WyJlbWFpbCJdfX0:1 
+            
+            
+           Failed to load resource: net::ERR_UNSAFE_REDIRECT
+80Refused to load the font '<URL>' because it violates the following Content Security Policy directive: "font-src 'none'".
+
+/~:1 Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner.
+2_app-ec33739ed5a06c30.js:38 WARN: A component changed from uncontrolled to controlled.
+(anonymous) @ _app-ec33739ed5a06c30.js:38
+_app-ec33739ed5a06c30.js:38 [LaunchDarkly] network error (Error)
+(anonymous) @ _app-ec33739ed5a06c30.js:38
+app.launchdarkly.com/sdk/evalx/62b35a865152ab14c5942820/contexts/eyJrZXkiOiI0NDMzMjY5MCIsImtpbmQiOiJ1c2VyIiwibmFtZSI6Inhnb25naXZlaXR0b3lhMiIsInJvbGVzIjpbImludGVudF9wZXJzb25hbCJdLCJlbWFpbCI6InguZ29uLmdpdmUuaXQudG8ueWEyM0BnbWFpbC5jb20iLCJ0aW1lX2NyZWF0ZWQiOjE3NTEwMzcwNDQyMjksIl9tZXRhIjp7InByaXZhdGVBdHRyaWJ1dGVzIjpbImVtYWlsIl19fQ:1 
+            
+            
+           Failed to load resource: net::ERR_UNSAFE_REDIRECT
+_app-ec33739ed5a06c30.js:38 [LaunchDarkly] network error (Error)
+(anonymous) @ _app-ec33739ed5a06c30.js:38
+app.launchdarkly.com/sdk/evalx/62b35a865152ab14c5942820/contexts/eyJrZXkiOiI0NDMzMjY5MCIsImtpbmQiOiJ1c2VyIiwibmFtZSI6Inhnb25naXZlaXR0b3lhMiIsInJvbGVzIjpbImludGVudF9wZXJzb25hbCJdLCJlbWFpbCI6InguZ29uLmdpdmUuaXQudG8ueWEyM0BnbWFpbC5jb20iLCJ0aW1lX2NyZWF0ZWQiOjE3NTEwMzcwNDQyMjksIl9tZXRhIjp7InByaXZhdGVBdHRyaWJ1dGVzIjpbImVtYWlsIl19fQ:1 
+            
+            
+           Failed to load resource: net::ERR_UNSAFE_REDIRECT
+www.google.com/recaptcha/enterprise/reload?k=6LdqhwwoAAAAAFPdw8jCuvY3PaHQItGj3RzOS4fW:1 
+            
+            
+           Failed to load resource: the server responded with a status of 503 ()
+events.launchdarkly.com/events/diagnostic/62b35a865152ab14c5942820:1 
+            
+            
+           Failed to load resource: net::ERR_UNSAFE_REDIRECT
+events.launchdarkly.com/events/diagnostic/62b35a865152ab14c5942820:1 
+            
+            
+           Failed to load resource: net::ERR_UNSAFE_REDIRECT
+_app-ec33739ed5a06c30.js:38 [LaunchDarkly] network error (Error)
+(anonymous) @ _app-ec33739ed5a06c30.js:38
+app.launchdarkly.com/sdk/evalx/62b35a865152ab14c5942820/contexts/eyJrZXkiOiI0NDMzMjY5MCIsImtpbmQiOiJ1c2VyIiwibmFtZSI6Inhnb25naXZlaXR0b3lhMiIsInJvbGVzIjpbImludGVudF9wZXJzb25hbCJdLCJlbWFpbCI6InguZ29uLmdpdmUuaXQudG8ueWEyM0BnbWFpbC5jb20iLCJ0aW1lX2NyZWF0ZWQiOjE3NTEwMzcwNDQyMjksIl9tZXRhIjp7InByaXZhdGVBdHRyaWJ1dGVzIjpbImVtYWlsIl19fQ:1 
+            
+            
+           Failed to load resource: net::ERR_UNSAFE_REDIRECT
+_app-ec33739ed5a06c30.js:38 [LaunchDarkly] network error (Error)
+(anonymous) @ _app-ec33739ed5a06c30.js:38
+app.launchdarkly.com/sdk/evalx/62b35a865152ab14c5942820/contexts/eyJrZXkiOiI0NDMzMjY5MCIsImtpbmQiOiJ1c2VyIiwibmFtZSI6Inhnb25naXZlaXR0b3lhMiIsInJvbGVzIjpbImludGVudF9wZXJzb25hbCJdLCJlbWFpbCI6InguZ29uLmdpdmUuaXQudG8ueWEyM0BnbWFpbC5jb20iLCJ0aW1lX2NyZWF0ZWQiOjE3NTEwMzcwNDQyMjksIl9tZXRhIjp7InByaXZhdGVBdHRyaWJ1dGVzIjpbImVtYWlsIl19fQ:1 
+            
+            
+           Failed to load resource: net::ERR_UNSAFE_REDIRECT
+null:1 
+            
+            
+           Failed to load resource: the server responded with a status of 404 ()
+_app-ec33739ed5a06c30.js:38 [LaunchDarkly] network error (Error)
+(anonymous) @ _app-ec33739ed5a06c30.js:38
+app.launchdarkly.com/sdk/evalx/62b35a865152ab14c5942820/contexts/eyJrZXkiOiI0NDMzMjY5MCIsImtpbmQiOiJ1c2VyIiwibmFtZSI6Inhnb25naXZlaXR0b3lhMiIsInJvbGVzIjpbImludGVudF9wZXJzb25hbCJdLCJlbWFpbCI6InguZ29uLmdpdmUuaXQudG8ueWEyM0BnbWFpbC5jb20iLCJ0aW1lX2NyZWF0ZWQiOjE3NTEwMzcwNDQyMjksIl9tZXRhIjp7InByaXZhdGVBdHRyaWJ1dGVzIjpbImVtYWlsIl19fQ:1 
+            
+            
+           Failed to load resource: net::ERR_UNSAFE_REDIRECT
+_app-ec33739ed5a06c30.js:38 [LaunchDarkly] network error (Error)
+(anonymous) @ _app-ec33739ed5a06c30.js:38
+app.launchdarkly.com/sdk/evalx/62b35a865152ab14c5942820/contexts/eyJrZXkiOiI0NDMzMjY5MCIsImtpbmQiOiJ1c2VyIiwibmFtZSI6Inhnb25naXZlaXR0b3lhMiIsInJvbGVzIjpbImludGVudF9wZXJzb25hbCJdLCJlbWFpbCI6InguZ29uLmdpdmUuaXQudG8ueWEyM0BnbWFpbC5jb20iLCJ0aW1lX2NyZWF0ZWQiOjE3NTEwMzcwNDQyMjksIl9tZXRhIjp7InByaXZhdGVBdHRyaWJ1dGVzIjpbImVtYWlsIl19fQ:1 
+            
+            
+           Failed to load resource: net::ERR_UNSAFE_REDIRECT
+_app-ec33739ed5a06c30.js:38 [LaunchDarkly] network error (Error)
+(anonymous) @ _app-ec33739ed5a06c30.js:38
+app.launchdarkly.com/sdk/evalx/62b35a865152ab14c5942820/contexts/eyJrZXkiOiI0NDMzMjY5MCIsImtpbmQiOiJ1c2VyIiwibmFtZSI6Inhnb25naXZlaXR0b3lhMiIsInJvbGVzIjpbImludGVudF9wZXJzb25hbCJdLCJlbWFpbCI6InguZ29uLmdpdmUuaXQudG8ueWEyM0BnbWFpbC5jb20iLCJ0aW1lX2NyZWF0ZWQiOjE3NTEwMzcwNDQyMjksIl9tZXRhIjp7InByaXZhdGVBdHRyaWJ1dGVzIjpbImVtYWlsIl19fQ:1 
+            
+            
+           Failed to load resource: net::ERR_UNSAFE_REDIRECT
+_app-ec33739ed5a06c30.js:38 [LaunchDarkly] network error (Error)
+(anonymous) @ _app-ec33739ed5a06c30.js:38
+app.launchdarkly.com/sdk/evalx/62b35a865152ab14c5942820/contexts/eyJrZXkiOiI0NDMzMjY5MCIsImtpbmQiOiJ1c2VyIiwibmFtZSI6Inhnb25naXZlaXR0b3lhMiIsInJvbGVzIjpbImludGVudF9wZXJzb25hbCJdLCJlbWFpbCI6InguZ29uLmdpdmUuaXQudG8ueWEyM0BnbWFpbC5jb20iLCJ0aW1lX2NyZWF0ZWQiOjE3NTEwMzcwNDQyMjksIl9tZXRhIjp7InByaXZhdGVBdHRyaWJ1dGVzIjpbImVtYWlsIl19fQ:1 
+            
+            
+           Failed to load resource: net::ERR_UNSAFE_REDIRECT
+_app-ec33739ed5a06c30.js:38 [LaunchDarkly] network error (Error)
+(anonymous) @ _app-ec33739ed5a06c30.js:38
+app.launchdarkly.com/sdk/evalx/62b35a865152ab14c5942820/contexts/eyJrZXkiOiI0NDMzMjY5MCIsImtpbmQiOiJ1c2VyIiwibmFtZSI6Inhnb25naXZlaXR0b3lhMiIsInJvbGVzIjpbImludGVudF9wZXJzb25hbCJdLCJlbWFpbCI6InguZ29uLmdpdmUuaXQudG8ueWEyM0BnbWFpbC5jb20iLCJ0aW1lX2NyZWF0ZWQiOjE3NTEwMzcwNDQyMjksIl9tZXRhIjp7InByaXZhdGVBdHRyaWJ1dGVzIjpbImVtYWlsIl19fQ:1 
+            
+            
+           Failed to load resource: net::ERR_UNSAFE_REDIRECT
+2_app-ec33739ed5a06c30.js:38 FocusLock: focus-fighting detected. Only one focus management system could be active. See https://github.com/theKashey/focus-lock/#focus-fighting
+(anonymous) @ _app-ec33739ed5a06c30.js:38
+11Error while parsing the 'sandbox' attribute: 'allow-downloads-without-user-activation' is an invalid sandbox flag.
+framework-16de14aedd75d3d7.js:1 Unrecognized feature: 'ambient-light-sensor'.
+_ @ framework-16de14aedd75d3d7.js:1
+framework-16de14aedd75d3d7.js:1 Unrecognized feature: 'battery'.
+_ @ framework-16de14aedd75d3d7.js:1
+framework-16de14aedd75d3d7.js:1 Unrecognized feature: 'execution-while-not-rendered'.
+_ @ framework-16de14aedd75d3d7.js:1
+framework-16de14aedd75d3d7.js:1 Unrecognized feature: 'execution-while-out-of-viewport'.
+_ @ framework-16de14aedd75d3d7.js:1
+framework-16de14aedd75d3d7.js:1 Unrecognized feature: 'layout-animations'.
+_ @ framework-16de14aedd75d3d7.js:1
+framework-16de14aedd75d3d7.js:1 Unrecognized feature: 'legacy-image-formats'.
+_ @ framework-16de14aedd75d3d7.js:1
+framework-16de14aedd75d3d7.js:1 Unrecognized feature: 'navigation-override'.
+_ @ framework-16de14aedd75d3d7.js:1
+framework-16de14aedd75d3d7.js:1 Unrecognized feature: 'oversized-images'.
+_ @ framework-16de14aedd75d3d7.js:1
+framework-16de14aedd75d3d7.js:1 Unrecognized feature: 'publickey-credentials'.
+_ @ framework-16de14aedd75d3d7.js:1
+framework-16de14aedd75d3d7.js:1 Unrecognized feature: 'speaker-selection'.
+_ @ framework-16de14aedd75d3d7.js:1
+framework-16de14aedd75d3d7.js:1 Unrecognized feature: 'unoptimized-images'.
+_ @ framework-16de14aedd75d3d7.js:1
+framework-16de14aedd75d3d7.js:1 Unrecognized feature: 'unsized-media'.
+_ @ framework-16de14aedd75d3d7.js:1
+framework-16de14aedd75d3d7.js:1 Unrecognized feature: 'pointer-lock'.
+_ @ framework-16de14aedd75d3d7.js:1
+framework-16de14aedd75d3d7.js:1 Allow attribute will take precedence over 'allowfullscreen'.
+_ @ framework-16de14aedd75d3d7.js:1
+framework-16de14aedd75d3d7.js:1 Allow attribute will take precedence over 'allowpaymentrequest'.
+_ @ framework-16de14aedd75d3d7.js:1
+workspace_iframe.html:32 Unrecognized feature: 'ambient-light-sensor'.
+workspace_iframe.html:32 Unrecognized feature: 'battery'.
+workspace_iframe.html:32 Unrecognized feature: 'execution-while-not-rendered'.
+workspace_iframe.html:32 Unrecognized feature: 'execution-while-out-of-viewport'.
+workspace_iframe.html:32 Unrecognized feature: 'layout-animations'.
+workspace_iframe.html:32 Unrecognized feature: 'legacy-image-formats'.
+workspace_iframe.html:32 Unrecognized feature: 'navigation-override'.
+workspace_iframe.html:32 Unrecognized feature: 'oversized-images'.
+workspace_iframe.html:32 Unrecognized feature: 'publickey-credentials'.
+workspace_iframe.html:32 Unrecognized feature: 'speaker-selection'.
+workspace_iframe.html:32 Unrecognized feature: 'unoptimized-images'.
+workspace_iframe.html:32 Unrecognized feature: 'unsized-media'.
+workspace_iframe.html:32 Allow attribute will take precedence over 'allowfullscreen'.
+workspace_iframe.html:32 Allow attribute will take precedence over 'allowpaymentrequest'.
+Console.js:61 [vite] connecting...
+Console.js:61 [vite] connected.
+2Console.js:61 The above error occurred in the <meshStandardMaterial> component:
+
+    at meshStandardMaterial
+    at PulsingMaterial (https://efa65f8b-ea9e-46a3-a75a-131ea22f8223-00-3ccrhvs2eehem.janeway.replit.dev/src/components/ui/ThreeBurst.tsx:37:28)
+    at mesh
+    at https://efa65f8b-ea9e-46a3-a75a-131ea22f8223-00-3ccrhvs2eehem.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@react-three_drei.js?v=cf1793d3:29863:5
+    at group
+    at group
+    at https://efa65f8b-ea9e-46a3-a75a-131ea22f8223-00-3ccrhvs2eehem.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@react-three_drei.js?v=cf1793d3:30322:3
+    at Cluster
+    at Suspense
+    at Suspense
+    at ErrorBoundary (https://efa65f8b-ea9e-46a3-a75a-131ea22f8223-00-3ccrhvs2eehem.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-I2OPIRC6.js?v=cf1793d3:16470:5)
+    at FiberProvider (https://efa65f8b-ea9e-46a3-a75a-131ea22f8223-00-3ccrhvs2eehem.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-I2OPIRC6.js?v=cf1793d3:18151:21)
+    at Provider (https://efa65f8b-ea9e-46a3-a75a-131ea22f8223-00-3ccrhvs2eehem.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-I2OPIRC6.js?v=cf1793d3:17759:3)
+
+React will try to recreate this component tree from scratch using the error boundary you provided, ErrorBoundary.
+Mt.forEach.n.<computed> @ Console.js:61
+Console.js:61 The above error occurred in the <meshStandardMaterial> component:
+
+    at meshStandardMaterial
+    at PulsingMaterial (https://efa65f8b-ea9e-46a3-a75a-131ea22f8223-00-3ccrhvs2eehem.janeway.replit.dev/src/components/ui/ThreeBurst.tsx:37:28)
+    at mesh
+    at RoundedBox2 (https://efa65f8b-ea9e-46a3-a75a-131ea22f8223-00-3ccrhvs2eehem.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@react-three_drei.js?v=cf1793d3:29929:9)
+    at group
+    at group
+    at https://efa65f8b-ea9e-46a3-a75a-131ea22f8223-00-3ccrhvs2eehem.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@react-three_drei.js?v=cf1793d3:30322:3
+    at Cluster
+    at Suspense
+    at Suspense
+    at ErrorBoundary (https://efa65f8b-ea9e-46a3-a75a-131ea22f8223-00-3ccrhvs2eehem.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-I2OPIRC6.js?v=cf1793d3:16470:5)
+    at FiberProvider (https://efa65f8b-ea9e-46a3-a75a-131ea22f8223-00-3ccrhvs2eehem.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-I2OPIRC6.js?v=cf1793d3:18151:21)
+    at Provider (https://efa65f8b-ea9e-46a3-a75a-131ea22f8223-00-3ccrhvs2eehem.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-I2OPIRC6.js?v=cf1793d3:17759:3)
+
+React will try to recreate this component tree from scratch using the error boundary you provided, ErrorBoundary.
+Mt.forEach.n.<computed> @ Console.js:61
+5Console.js:61 The above error occurred in the <meshStandardMaterial> component:
+
+    at meshStandardMaterial
+    at PulsingMaterial (https://efa65f8b-ea9e-46a3-a75a-131ea22f8223-00-3ccrhvs2eehem.janeway.replit.dev/src/components/ui/ThreeBurst.tsx:37:28)
+    at mesh
+    at https://efa65f8b-ea9e-46a3-a75a-131ea22f8223-00-3ccrhvs2eehem.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@react-three_drei.js?v=cf1793d3:29863:5
+    at group
+    at group
+    at group
+    at https://efa65f8b-ea9e-46a3-a75a-131ea22f8223-00-3ccrhvs2eehem.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@react-three_drei.js?v=cf1793d3:30322:3
+    at Cluster
+    at Suspense
+    at Suspense
+    at ErrorBoundary (https://efa65f8b-ea9e-46a3-a75a-131ea22f8223-00-3ccrhvs2eehem.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-I2OPIRC6.js?v=cf1793d3:16470:5)
+    at FiberProvider (https://efa65f8b-ea9e-46a3-a75a-131ea22f8223-00-3ccrhvs2eehem.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-I2OPIRC6.js?v=cf1793d3:18151:21)
+    at Provider (https://efa65f8b-ea9e-46a3-a75a-131ea22f8223-00-3ccrhvs2eehem.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-I2OPIRC6.js?v=cf1793d3:17759:3)
+
+React will try to recreate this component tree from scratch using the error boundary you provided, ErrorBoundary.
+Mt.forEach.n.<computed> @ Console.js:61
+Console.js:61 The above error occurred in the <meshStandardMaterial> component:
+
+    at meshStandardMaterial
+    at mesh
+    at https://efa65f8b-ea9e-46a3-a75a-131ea22f8223-00-3ccrhvs2eehem.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@react-three_drei.js?v=cf1793d3:29863:5
+    at SunLight
+    at Suspense
+    at Suspense
+    at ErrorBoundary (https://efa65f8b-ea9e-46a3-a75a-131ea22f8223-00-3ccrhvs2eehem.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-I2OPIRC6.js?v=cf1793d3:16470:5)
+    at FiberProvider (https://efa65f8b-ea9e-46a3-a75a-131ea22f8223-00-3ccrhvs2eehem.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-I2OPIRC6.js?v=cf1793d3:18151:21)
+    at Provider (https://efa65f8b-ea9e-46a3-a75a-131ea22f8223-00-3ccrhvs2eehem.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-I2OPIRC6.js?v=cf1793d3:17759:3)
+
+React will try to recreate this component tree from scratch using the error boundary you provided, ErrorBoundary.
+Mt.forEach.n.<computed> @ Console.js:61
+Console.js:61 The above error occurred in the <mesh> component:
+
+    at mesh
+    at https://efa65f8b-ea9e-46a3-a75a-131ea22f8223-00-3ccrhvs2eehem.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@react-three_drei.js?v=cf1793d3:21333:3
+    at Suspense
+    at Suspense
+    at ErrorBoundary (https://efa65f8b-ea9e-46a3-a75a-131ea22f8223-00-3ccrhvs2eehem.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-I2OPIRC6.js?v=cf1793d3:16470:5)
+    at FiberProvider (https://efa65f8b-ea9e-46a3-a75a-131ea22f8223-00-3ccrhvs2eehem.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-I2OPIRC6.js?v=cf1793d3:18151:21)
+    at Provider (https://efa65f8b-ea9e-46a3-a75a-131ea22f8223-00-3ccrhvs2eehem.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-I2OPIRC6.js?v=cf1793d3:17759:3)
+
+React will try to recreate this component tree from scratch using the error boundary you provided, ErrorBoundary.
+Mt.forEach.n.<computed> @ Console.js:61
+2chunk-I2OPIRC6.js?v=cf1793d3:18257 Uncaught TypeError: Cannot read properties of undefined (reading 'replit')
+    at chunk-I2OPIRC6.js?v=cf1793d3:16694:50
+    at Array.reduce (<anonymous>)
+    at applyProps$1 (chunk-I2OPIRC6.js?v=cf1793d3:16694:25)
+    at createInstance (chunk-I2OPIRC6.js?v=cf1793d3:16202:28)
+    at completeWork (chunk-I2OPIRC6.js?v=cf1793d3:8393:34)
+    at completeUnitOfWork (chunk-I2OPIRC6.js?v=cf1793d3:13669:24)
+    at performUnitOfWork (chunk-I2OPIRC6.js?v=cf1793d3:13651:13)
+    at workLoopSync (chunk-I2OPIRC6.js?v=cf1793d3:13583:13)
+    at renderRootSync (chunk-I2OPIRC6.js?v=cf1793d3:13562:15)
+    at recoverFromConcurrentError (chunk-I2OPIRC6.js?v=cf1793d3:13152:28)
+Console.js:61 The above error occurred in the <ForwardRef(Canvas)> component:
+
+    at Canvas (https://efa65f8b-ea9e-46a3-a75a-131ea22f8223-00-3ccrhvs2eehem.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-I2OPIRC6.js?v=cf1793d3:18217:3)
+    at FiberProvider (https://efa65f8b-ea9e-46a3-a75a-131ea22f8223-00-3ccrhvs2eehem.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-I2OPIRC6.js?v=cf1793d3:18151:21)
+    at CanvasWrapper
+    at ThreeBurst (https://efa65f8b-ea9e-46a3-a75a-131ea22f8223-00-3ccrhvs2eehem.janeway.replit.dev/src/components/ui/ThreeBurst.tsx:263:17)
+    at HeroFX (https://efa65f8b-ea9e-46a3-a75a-131ea22f8223-00-3ccrhvs2eehem.janeway.replit.dev/src/components/ui/HeroFX.tsx:22:3)
+    at Index (https://efa65f8b-ea9e-46a3-a75a-131ea22f8223-00-3ccrhvs2eehem.janeway.replit.dev/src/pages/Index.tsx:68:19)
+    at RenderedRoute (https://efa65f8b-ea9e-46a3-a75a-131ea22f8223-00-3ccrhvs2eehem.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/react-router-dom.js?v=cf1793d3:5455:26)
+    at Routes (https://efa65f8b-ea9e-46a3-a75a-131ea22f8223-00-3ccrhvs2eehem.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/react-router-dom.js?v=cf1793d3:6188:3)
+    at Suspense
+    at Router (https://efa65f8b-ea9e-46a3-a75a-131ea22f8223-00-3ccrhvs2eehem.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/react-router-dom.js?v=cf1793d3:6131:13)
+    at BrowserRouter (https://efa65f8b-ea9e-46a3-a75a-131ea22f8223-00-3ccrhvs2eehem.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/react-router-dom.js?v=cf1793d3:9149:3)
+    at Provider (https://efa65f8b-ea9e-46a3-a75a-131ea22f8223-00-3ccrhvs2eehem.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-B64GZIWT.js?v=cf1793d3:38:15)
+    at TooltipProvider (https://efa65f8b-ea9e-46a3-a75a-131ea22f8223-00-3ccrhvs2eehem.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@radix-ui_react-tooltip.js?v=cf1793d3:2216:5)
+    at QueryClientProvider (https://efa65f8b-ea9e-46a3-a75a-131ea22f8223-00-3ccrhvs2eehem.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@tanstack_react-query.js?v=cf1793d3:2805:3)
+    at App
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+Mt.forEach.n.<computed> @ Console.js:61
+chunk-UZOKQUDP.js?v=cf1793d3:19413 Uncaught TypeError: Cannot read properties of undefined (reading 'replit')
+    at chunk-I2OPIRC6.js?v=cf1793d3:16694:50
+    at Array.reduce (<anonymous>)
+    at applyProps$1 (chunk-I2OPIRC6.js?v=cf1793d3:16694:25)
+    at createInstance (chunk-I2OPIRC6.js?v=cf1793d3:16202:28)
+    at completeWork (chunk-I2OPIRC6.js?v=cf1793d3:8393:34)
+    at completeUnitOfWork (chunk-I2OPIRC6.js?v=cf1793d3:13669:24)
+    at performUnitOfWork (chunk-I2OPIRC6.js?v=cf1793d3:13651:13)
+    at workLoopSync (chunk-I2OPIRC6.js?v=cf1793d3:13583:13)
+    at renderRootSync (chunk-I2OPIRC6.js?v=cf1793d3:13562:15)
+    at recoverFromConcurrentError (chunk-I2OPIRC6.js?v=cf1793d3:13152:28)
+Console.js:61 THREE.WebGLRenderer: Context Lost.
+js.stripe.com/v3/controller-with-preconnect-06620e4f6e996c3cdfb2bf69061b0104.html#__shared_params__[version]=acacia&apiKey=pk_live_515YpNsJAmnYVOvfnsBqRdATWS6SzbNAslOz1z2tujdKuvRMDAwWMeFXp6dJL1YKRrQjB0WAp0UDGwlFYL7hxw7Fc00QkfxBFsL&apiVersion=2025-01-27.acacia&stripeJsId=f4fe9d0a-0c5c-42ed-89c7-edb24e666216&stripeObjId=sobj-c6c5e13d-8aae-420e-a31d-7a53ec6f6c52&firstStripeInstanceCreatedLatency=8&controllerCount=1&isCheckout=false&stripeJsLoadTime=1751037045471&manualBrowserDeprecationRollout=false&mids[guid]=NA&mids[muid]=d53315e0-a92d-44d5-be47-d482f6de209d2eb8d9&mids[sid]=426dbc73-eb19-4842-9660-8e88bfa9c15583048a&referrer=https%3A%2F%2Freplit.com%2F~&controllerId=__privateStripeController9831:1 Refused to load the stylesheet 'https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700;800;900&display=swa' because it violates the following Content Security Policy directive: "style-src 'self' 'sha256-0hAheEzaMe6uXIKV4EehS9pu1am1lj/KnnzrOYqckXk='". Note that 'style-src-elem' was not explicitly set, so 'style-src' is used as a fallback.
+
+js.stripe.com/v3/controller-with-preconnect-06620e4f6e996c3cdfb2bf69061b0104.html#__shared_params__[version]=acacia&apiKey=pk_live_515YpNsJAmnYVOvfnsBqRdATWS6SzbNAslOz1z2tujdKuvRMDAwWMeFXp6dJL1YKRrQjB0WAp0UDGwlFYL7hxw7Fc00QkfxBFsL&apiVersion=2025-01-27.acacia&stripeJsId=f4fe9d0a-0c5c-42ed-89c7-edb24e666216&stripeObjId=sobj-c6c5e13d-8aae-420e-a31d-7a53ec6f6c52&firstStripeInstanceCreatedLatency=8&controllerCount=1&isCheckout=false&stripeJsLoadTime=1751037045471&manualBrowserDeprecationRollout=false&mids[guid]=NA&mids[muid]=d53315e0-a92d-44d5-be47-d482f6de209d2eb8d9&mids[sid]=426dbc73-eb19-4842-9660-8e88bfa9c15583048a&referrer=https%3A%2F%2Freplit.com%2F~&controllerId=__privateStripeController9831:1 Refused to load the stylesheet 'https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700;800;900&display=swa' because it violates the following Content Security Policy directive: "style-src 'self' 'sha256-0hAheEzaMe6uXIKV4EehS9pu1am1lj/KnnzrOYqckXk='". Note that 'style-src-elem' was not explicitly set, so 'style-src' is used as a fallback.
+
+m.stripe.network/inner.html#url=https%3A%2F%2Freplit.com%2F~&title=Home%20-%20Replit&referrer=https%3A%2F%2Freplit.com%2Fsignup%3Fredirecting%3D1&muid=d53315e0-a92d-44d5-be47-d482f6de209d2eb8d9&sid=426dbc73-eb19-4842-9660-8e88bfa9c15583048a&version=6&preview=false&__shared_params__[version]=acacia:1 Refused to load the stylesheet 'https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700;800;900&display=swa' because it violates the following Content Security Policy directive: "style-src https://m.stripe.network". Note that 'style-src-elem' was not explicitly set, so 'style-src' is used as a fallback.

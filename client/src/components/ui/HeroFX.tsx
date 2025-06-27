@@ -1,6 +1,5 @@
 import { createPortal } from "react-dom";
 import { useEffect, useRef } from "react";
-import ThreeBurst from "@/components/ui/ThreeBurst";
 
 /**
  *  <HeroFX anchor={sectionRef}/>
@@ -73,6 +72,9 @@ export default function HeroFX({
         return () => window.removeEventListener("pointermove", move);
     }, [parallax]);
 
-    /* ── render ThreeBurst into the portal ─────────────────────────────────── */
-    return createPortal(<ThreeBurst />, mount.current);
+    /* ── render gradient background into the portal ─────────────────────────────────── */
+    return createPortal(
+        <div className="w-full h-full bg-gradient-to-br from-purple-900/20 via-blue-900/30 to-teal-900/20 animate-pulse" />, 
+        mount.current
+    );
 }
