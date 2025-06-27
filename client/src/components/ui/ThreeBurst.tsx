@@ -151,6 +151,16 @@ function Effects() {
    Main export
 ────────────────────────────────────────────────────────────── */
 export default function ThreeBurst() {
+    const reduce =
+        typeof window !== "undefined" &&
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const small =
+        typeof window !== "undefined" &&
+        window.matchMedia("(max-width: 640px)").matches;
+    if (reduce || small) {
+        return null;
+    }
+
     /* cap DPR to 2 for perf; still retina-ish */
     const [dpr] = useState(() => Math.min(window.devicePixelRatio, 2));
 
