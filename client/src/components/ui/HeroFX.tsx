@@ -46,10 +46,11 @@ export default function HeroFX({
             const hero = anchor.current;
             if (!hero) return;
             const { top, left, width, height } = hero.getBoundingClientRect();
+            const pad = 32;
             /* convert viewport rect → clip-path (faster than resizing canvas) */
             mount.current!.style.clipPath =
-                `inset(${Math.max(top,0)}px calc(100vw - ${left + width}px) \
-               calc(100vh - ${top + height}px) ${Math.max(left,0)}px)`;
+                `inset(${Math.max(top - pad,0)}px calc(100vw - ${left + width + pad}px) ` +
+                `calc(100vh - ${top + height + pad}px) ${Math.max(left - pad,0)}px)`;
         };
         update();                                           // initial
         window.addEventListener("scroll", update,  { passive: true });
