@@ -157,6 +157,15 @@ Changelog:
   * Updated Navigation with active state indicators and underlines
   * Added professional Footer with company links and Petar Nikolić watermark
   * Integrated all pages with react-router-dom routing
+- June 27, 2025. Major UX refactor - Unified single-scroll landing page:
+  * Merged all marketing pages (Features, Pricing, Templates, Docs) into single Index.tsx
+  * Implemented smooth scroll navigation with anchor-based section jumping
+  * Added intersection observer for automatic active section tracking
+  * Created comprehensive content sections with 40+ features, 3 pricing tiers, 6 template categories
+  * Updated Navigation component to support both route-based and anchor-based links
+  * Maintained separate Editor route while unifying all marketing content
+  * Enhanced user experience with seamless scrolling and visual section indicators
+  * Fixed all JSX syntax errors and deployment issues
 ```
 
 ## User Preferences

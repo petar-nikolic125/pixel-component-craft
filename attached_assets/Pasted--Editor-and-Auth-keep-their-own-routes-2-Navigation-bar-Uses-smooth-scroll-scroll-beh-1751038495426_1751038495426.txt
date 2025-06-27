@@ -1,0 +1,50 @@
+*Editor and Auth keep their own routes.*
+
+2. **Navigation bar**
+* Uses smooth-scroll (`scroll-behavior: smooth` or JS) to in-page anchors.
+* Highlights the current section (IntersectionObserver → add `data-active`, or use `react-scrollspy`).
+* Shows active colour *and underline bar* exactly like now.
+* On `/editor` or `/sign-in`, highlight nothing (or “Editor”).
+
+3. **Routing**
+* Routes that used to point to `<Features />` etc. should now navigate to
+  `/#features`, `/#pricing`, … (React Router + `useNavigate` or `<Navigate />`).
+* Fallback `*` route → `/#hero`.
+
+4. **Content integrity**
+* Copy/paste each section’s JSX into new `Index.tsx` **without loss** (cards, grids, seal component, etc.).
+* Keep the **metallic “Designed by Petar Nikolić” seal** at the end of the unified scroll.
+
+5. **Mobile & edge cases**
+* Test on ≤ 360 px width:
+  * Headline wraps nicely, no overflow.
+  * CTA buttons readable & tappable (≥ 44 px height).
+  * Sections stack with proper padding.
+* Hero 3-D canvas (`HeroFX`) continues to fade/clip correctly on scroll.
+* Star grid background still fills viewport.
+* No unexpected scroll-snap or jitter.
+
+6. **Performance**
+* Remove now-unused individual page components or turn them into thin shell routes that `navigate("#anchor")`.
+* Lazy-load heavy assets (3-D, images) only once.
+
+7. **Acceptance checklist (must pass before commit)**
+- `npm run dev` opens `/` with full scroll experience.
+- Navbar links scroll to correct anchors.
+- “Try the Editor” button still routes to `/editor`.
+- `/editor` and `/sign-in` remain external pages.
+- `git status` clean; all lints/pre-commit hooks succeed.
+
+(*EditorNewProfessional.tsx currently renders `/editor` – leave untouched.*)
+
+---
+
+## Deliverables
+- Refactored `pages/Index.tsx` containing all sections.
+- Updated navigation component (active-link logic).
+- Adjusted routes in `App.tsx`.
+- Any CSS/utility tweaks to ensure smooth scrolling & mobile friendliness.
+- **One** clean commit with a concise message, e.g.  
+`feat: merge marketing pages into single-scroll landing + nav scroll-spy`.
+
+Good luck — ship it! 🚀

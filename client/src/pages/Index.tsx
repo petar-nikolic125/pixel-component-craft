@@ -1,17 +1,17 @@
 /* ========================================================================
- *  Landing – Index.tsx   ( Ultimate Landing Page )
+ *  Landing – Index.tsx   ( Ultimate Single-Scroll Landing Page )
  * ===================================================================== */
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { Navigation } from "@/components/layout/Navigation";
 import HeroFX from "@/components/ui/HeroFX";
-import { FeatureSection } from "@/components/landing/FeatureSection";
-import { PricingSection } from "@/components/landing/PricingSection";
-
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Input } from "@/components/ui/input";
 import {
     ArrowRight,
     Palette,
@@ -19,6 +19,34 @@ import {
     Sparkles,
     ShieldCheck,
     Hexagon,
+    Zap, 
+    Layers, 
+    Download, 
+    Eye,
+    Settings, 
+    Lock, 
+    Rocket, 
+    Globe, 
+    Shield, 
+    Users,
+    BarChart3, 
+    Clock, 
+    Smartphone, 
+    Cloud,
+    Check, 
+    X, 
+    Crown,
+    Star, 
+    TrendingUp,
+    Edit3,
+    Book,
+    Database,
+    ChevronRight, 
+    Search, 
+    FileCode,
+    Terminal,
+    Package, 
+    GitBranch
 } from "lucide-react";
 
 /* — star-dots — */
@@ -29,6 +57,299 @@ const dots = [
     { x: "57%", y: "63%", s: 1 },
     { x: "72%", y: "20%", s: 2 },
     { x: "86%", y: "76%", s: 1 },
+];
+
+/* ===================================================================== */
+/*  DATA ARRAYS FOR UNIFIED SECTIONS                                    */
+/* ===================================================================== */
+
+const mainFeatures = [
+    {
+        icon: <Zap className="w-8 h-8" />,
+        title: "Lightning Fast",
+        description: "Build pages in minutes with our intuitive drag-and-drop interface. No coding required.",
+        badge: "Performance"
+    },
+    {
+        icon: <Palette className="w-8 h-8" />,
+        title: "Beautiful Templates",
+        description: "Start with professionally designed templates and customize every aspect to match your brand.",
+        badge: "Design"
+    },
+    {
+        icon: <Code className="w-8 h-8" />,
+        title: "Clean Code Export",
+        description: "Export production-ready HTML, CSS, React components, or integrate with your favorite framework.",
+        badge: "Developer"
+    },
+    {
+        icon: <Layers className="w-8 h-8" />,
+        title: "Advanced Layers",
+        description: "Manage complex layouts with our Photoshop-grade layer system. Group, lock, and organize with ease.",
+        badge: "Pro"
+    },
+    {
+        icon: <Download className="w-8 h-8" />,
+        title: "Multiple Export Options",
+        description: "Export as PNG, HTML/CSS, React components, or push directly to GitHub and CodePen.",
+        badge: "Export"
+    },
+    {
+        icon: <Eye className="w-8 h-8" />,
+        title: "Live Preview",
+        description: "See your changes in real-time. Toggle between edit and preview modes instantly.",
+        badge: "Preview"
+    },
+    {
+        icon: <Settings className="w-8 h-8" />,
+        title: "Component Library",
+        description: "Access 40+ pre-built components including heroes, features, testimonials, forms, and more.",
+        badge: "Components"
+    },
+    {
+        icon: <Lock className="w-8 h-8" />,
+        title: "Version Control",
+        description: "Never lose your work with automatic saves and comprehensive undo/redo history.",
+        badge: "Safety"
+    },
+    {
+        icon: <Rocket className="w-8 h-8" />,
+        title: "One-Click Deploy",
+        description: "Deploy your landing pages instantly with our integrated hosting. Get a free subdomain or use your own.",
+        badge: "Deploy"
+    },
+    {
+        icon: <Globe className="w-8 h-8" />,
+        title: "SEO Optimized",
+        description: "Built-in SEO best practices ensure your pages rank well in search engines.",
+        badge: "SEO"
+    },
+    {
+        icon: <Shield className="w-8 h-8" />,
+        title: "Enterprise Security",
+        description: "Bank-level encryption and security practices keep your designs and data safe.",
+        badge: "Security"
+    },
+    {
+        icon: <Users className="w-8 h-8" />,
+        title: "Team Collaboration",
+        description: "Work together in real-time. Share projects, leave comments, and manage permissions.",
+        badge: "Teams"
+    }
+];
+
+const advancedFeatures = [
+    {
+        icon: <BarChart3 className="w-6 h-6" />,
+        title: "Analytics Integration",
+        description: "Connect Google Analytics, Mixpanel, or your favorite analytics tool with one click."
+    },
+    {
+        icon: <Clock className="w-6 h-6" />,
+        title: "Scheduled Publishing",
+        description: "Schedule your pages to go live at the perfect time for your audience."
+    },
+    {
+        icon: <Smartphone className="w-6 h-6" />,
+        title: "Mobile-First Design",
+        description: "Every component is optimized for mobile devices out of the box."
+    },
+    {
+        icon: <Cloud className="w-6 h-6" />,
+        title: "Cloud Storage",
+        description: "All your projects backed up in the cloud with unlimited storage on premium plans."
+    }
+];
+
+const pricingPlans = [
+    {
+        name: 'Free',
+        icon: <Sparkles className="w-6 h-6" />,
+        price: { monthly: 0, yearly: 0 },
+        description: 'Perfect for trying out ComponentForge',
+        features: [
+            { text: '3 active projects', included: true },
+            { text: 'Basic components library', included: true },
+            { text: 'HTML/CSS export', included: true },
+            { text: 'Community support', included: true },
+            { text: 'ComponentForge subdomain', included: true },
+            { text: 'React export', included: false },
+            { text: 'Custom domains', included: false },
+            { text: 'Team collaboration', included: false },
+            { text: 'Priority support', included: false },
+            { text: 'Advanced components', included: false }
+        ],
+        cta: 'Start Free',
+        highlighted: false
+    },
+    {
+        name: 'Premium',
+        icon: <Rocket className="w-6 h-6" />,
+        price: { monthly: 29, yearly: 290 },
+        description: 'For professionals and growing teams',
+        features: [
+            { text: 'Unlimited projects', included: true },
+            { text: 'Full components library', included: true },
+            { text: 'HTML/CSS export', included: true },
+            { text: 'React & Vue export', included: true },
+            { text: 'Custom domains', included: true },
+            { text: 'Team collaboration (5 users)', included: true },
+            { text: 'Priority email support', included: true },
+            { text: 'Advanced components', included: true },
+            { text: 'GitHub integration', included: true },
+            { text: 'White-label export', included: false }
+        ],
+        cta: 'Start Premium',
+        highlighted: true
+    },
+    {
+        name: 'Enterprise',
+        icon: <Crown className="w-6 h-6" />,
+        price: { monthly: 99, yearly: 990 },
+        description: 'For large teams and organizations',
+        features: [
+            { text: 'Everything in Premium', included: true },
+            { text: 'Unlimited team members', included: true },
+            { text: 'White-label export', included: true },
+            { text: 'Custom integrations', included: true },
+            { text: 'Dedicated support', included: true },
+            { text: 'SLA guarantee', included: true },
+            { text: 'Custom training', included: true },
+            { text: 'Priority feature requests', included: true },
+            { text: 'Advanced security', included: true },
+            { text: 'Custom contracts', included: true }
+        ],
+        cta: 'Contact Sales',
+        highlighted: false
+    }
+];
+
+const templateCategories = [
+    {
+        name: 'SaaS Pro',
+        icon: '💼',
+        description: 'Modern SaaS landing page with pricing tables and feature grids',
+        rating: 4.9,
+        downloads: '12.5k',
+        badge: 'Popular',
+        badgeColor: 'bg-purple-500'
+    },
+    {
+        name: 'Creative Agency',
+        icon: '🎨',
+        description: 'Bold and creative design for digital agencies',
+        rating: 4.8,
+        downloads: '8.9k',
+        badge: 'New',
+        badgeColor: 'bg-green-500'
+    },
+    {
+        name: 'Startup Launch',
+        icon: '🚀',
+        description: 'Perfect for product launches and funding announcements',
+        rating: 4.7,
+        downloads: '6.2k',
+        badge: 'Trending',
+        badgeColor: 'bg-blue-500'
+    },
+    {
+        name: 'Portfolio Pro',
+        icon: '👤',
+        description: 'Showcase your work with this professional portfolio template',
+        rating: 4.9,
+        downloads: '11.3k',
+        badge: 'Featured',
+        badgeColor: 'bg-amber-500'
+    },
+    {
+        name: 'E-commerce Store',
+        icon: '🛍️',
+        description: 'Complete e-commerce solution with product galleries',
+        rating: 4.6,
+        downloads: '5.8k',
+        badge: 'Updated',
+        badgeColor: 'bg-teal-500'
+    },
+    {
+        name: 'Blog & Magazine',
+        icon: '📰',
+        description: 'Content-focused design for blogs and publications',
+        rating: 4.5,
+        downloads: '4.1k',
+        badge: 'Classic',
+        badgeColor: 'bg-slate-500'
+    }
+];
+
+const docSections = [
+    {
+        title: 'Getting Started',
+        icon: <Zap className="w-6 h-6" />,
+        description: 'Quick start guides and tutorials to get you building immediately',
+        items: [
+            { title: 'Introduction', href: '#intro' },
+            { title: 'Quick Start', href: '#quick-start' },
+            { title: 'Installation', href: '#installation' },
+            { title: 'Your First Project', href: '#first-project' }
+        ]
+    },
+    {
+        title: 'Editor Guide',
+        icon: <Layers className="w-6 h-6" />,
+        description: 'Master the visual editor with comprehensive guides',
+        items: [
+            { title: 'Canvas Overview', href: '#canvas' },
+            { title: 'Component Library', href: '#components' },
+            { title: 'Layers & Groups', href: '#layers' },
+            { title: 'Transform Tools', href: '#transform' },
+            { title: 'Keyboard Shortcuts', href: '#shortcuts' }
+        ]
+    },
+    {
+        title: 'Components',
+        icon: <Package className="w-6 h-6" />,
+        description: 'Detailed documentation for all 40+ components',
+        items: [
+            { title: 'Hero Sections', href: '#hero' },
+            { title: 'Feature Blocks', href: '#features' },
+            { title: 'Buttons & CTAs', href: '#buttons' },
+            { title: 'Forms', href: '#forms' },
+            { title: 'Navigation', href: '#navigation' }
+        ]
+    },
+    {
+        title: 'Export & Deploy',
+        icon: <Download className="w-6 h-6" />,
+        description: 'Learn how to export and deploy your projects',
+        items: [
+            { title: 'HTML/CSS Export', href: '#html-export' },
+            { title: 'React Components', href: '#react-export' },
+            { title: 'GitHub Integration', href: '#github' },
+            { title: 'Custom Hosting', href: '#hosting' }
+        ]
+    },
+    {
+        title: 'API Reference',
+        icon: <Code className="w-6 h-6" />,
+        description: 'Complete API documentation for developers',
+        items: [
+            { title: 'REST API', href: '#rest-api' },
+            { title: 'Webhooks', href: '#webhooks' },
+            { title: 'SDK Documentation', href: '#sdk' },
+            { title: 'Rate Limits', href: '#limits' }
+        ]
+    },
+    {
+        title: 'Advanced Topics',
+        icon: <Settings className="w-6 h-6" />,
+        description: 'Advanced techniques and best practices',
+        items: [
+            { title: 'Custom CSS', href: '#custom-css' },
+            { title: 'JavaScript Integration', href: '#javascript' },
+            { title: 'Performance Tips', href: '#performance' },
+            { title: 'SEO Best Practices', href: '#seo' }
+        ]
+    }
 ];
 
 /* — tilt util (disabled < sm) — */
@@ -143,11 +464,242 @@ export default function Index() {
                 </div>
             </section>
 
-            {/* content sections */}
-            <FeatureSection />
-            <PricingSection />
+            {/* ================= FEATURES SECTION ========================= */}
+            <section id="features" className="py-20 bg-gradient-to-b from-slate-900 via-purple-900/20 to-slate-900">
+                <div className="container mx-auto px-6">
+                    {/* Features Hero */}
+                    <div className="text-center mb-20">
+                        <Badge className="mb-4 bg-purple-500/20 text-purple-300 border-purple-500/30">
+                            Feature-Rich Platform
+                        </Badge>
+                        <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
+                            Everything You Need to Build
+                            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
+                                Stunning Landing Pages
+                            </span>
+                        </h2>
+                        <p className="text-xl text-gray-300 mb-8 leading-relaxed max-w-3xl mx-auto">
+                            From drag-and-drop simplicity to advanced developer tools, ComponentForge gives you the power 
+                            to create professional websites without limits.
+                        </p>
+                    </div>
 
-            {/* footer */}
+                    {/* Main Features Grid */}
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+                        {mainFeatures.map((feature, index) => (
+                            <div 
+                                key={index}
+                                className="group relative bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl p-8 hover:bg-slate-800/70 transition-all duration-300 hover:scale-105 hover:border-purple-500/50"
+                            >
+                                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                                <div className="relative">
+                                    <div className="text-purple-400 mb-4">{feature.icon}</div>
+                                    <Badge className="mb-3 bg-purple-500/20 text-purple-300 border-purple-500/30 text-xs">
+                                        {feature.badge}
+                                    </Badge>
+                                    <h3 className="text-xl font-semibold text-white mb-3">{feature.title}</h3>
+                                    <p className="text-gray-400 leading-relaxed">{feature.description}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Advanced Features */}
+                    <div className="bg-slate-800/30 rounded-2xl p-12">
+                        <div className="text-center mb-12">
+                            <h3 className="text-3xl font-bold text-white mb-4">Plus Advanced Capabilities</h3>
+                            <p className="text-xl text-gray-400">Take your projects to the next level</p>
+                        </div>
+                        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                            {advancedFeatures.map((feature, index) => (
+                                <div 
+                                    key={index}
+                                    className="flex gap-4 p-6 bg-slate-900/50 backdrop-blur-sm border border-slate-700/30 rounded-lg hover:border-purple-500/30 transition-colors"
+                                >
+                                    <div className="text-purple-400 flex-shrink-0">{feature.icon}</div>
+                                    <div>
+                                        <h4 className="text-lg font-semibold text-white mb-2">{feature.title}</h4>
+                                        <p className="text-gray-400 text-sm">{feature.description}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* ================= PRICING SECTION ========================== */}
+            <section id="pricing" className="py-20">
+                <div className="container mx-auto px-6">
+                    <div className="text-center mb-16">
+                        <Badge className="mb-4 bg-green-500/20 text-green-300 border-green-500/30">
+                            Simple Pricing
+                        </Badge>
+                        <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                            Choose Your Plan
+                        </h2>
+                        <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+                            Start free and scale as you grow. All plans include our core features.
+                        </p>
+                    </div>
+
+                    <div className="flex justify-center mb-12">
+                        <Tabs defaultValue="monthly" className="w-auto">
+                            <TabsList className="bg-slate-800/50 border border-slate-700/50">
+                                <TabsTrigger value="monthly">Monthly</TabsTrigger>
+                                <TabsTrigger value="yearly">Yearly <Badge className="ml-2 bg-green-500/20 text-green-300">-20%</Badge></TabsTrigger>
+                            </TabsList>
+                        </Tabs>
+                    </div>
+
+                    <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                        {pricingPlans.map((plan, index) => (
+                            <div 
+                                key={index}
+                                className={`relative bg-slate-800/50 backdrop-blur-sm border rounded-2xl p-8 ${
+                                    plan.highlighted ? 'border-purple-500/50 ring-1 ring-purple-500/20' : 'border-slate-700/50'
+                                }`}
+                            >
+                                {plan.highlighted && (
+                                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                                        <Badge className="bg-purple-500 text-white">Most Popular</Badge>
+                                    </div>
+                                )}
+                                <div className="text-center mb-8">
+                                    <div className="flex items-center justify-center gap-2 mb-4">
+                                        <div className="text-purple-400">{plan.icon}</div>
+                                        <h3 className="text-2xl font-bold text-white">{plan.name}</h3>
+                                    </div>
+                                    <div className="text-4xl font-bold text-white mb-2">
+                                        ${plan.price.monthly}
+                                        <span className="text-lg text-gray-400">/month</span>
+                                    </div>
+                                    <p className="text-gray-400">{plan.description}</p>
+                                </div>
+                                <ul className="space-y-3 mb-8">
+                                    {plan.features.map((feature, fIndex) => (
+                                        <li key={fIndex} className="flex items-center gap-3">
+                                            {feature.included ? (
+                                                <Check className="w-5 h-5 text-green-400 flex-shrink-0" />
+                                            ) : (
+                                                <X className="w-5 h-5 text-gray-500 flex-shrink-0" />
+                                            )}
+                                            <span className={feature.included ? 'text-gray-300' : 'text-gray-500'}>
+                                                {feature.text}
+                                            </span>
+                                        </li>
+                                    ))}
+                                </ul>
+                                <Button 
+                                    className={`w-full ${
+                                        plan.highlighted 
+                                            ? 'bg-purple-600 hover:bg-purple-700' 
+                                            : 'bg-slate-700 hover:bg-slate-600'
+                                    }`}
+                                >
+                                    {plan.cta}
+                                </Button>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* ================= TEMPLATES SECTION ======================== */}
+            <section id="templates" className="py-20 bg-slate-800/30">
+                <div className="container mx-auto px-6">
+                    <div className="text-center mb-16">
+                        <Badge className="mb-4 bg-blue-500/20 text-blue-300 border-blue-500/30">
+                            Template Library
+                        </Badge>
+                        <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                            Professional Templates
+                        </h2>
+                        <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+                            Start with beautifully designed templates and customize them to match your brand.
+                        </p>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {templateCategories.map((template, index) => (
+                            <div 
+                                key={index}
+                                className="group relative bg-slate-900/50 backdrop-blur-sm border border-slate-700/50 rounded-xl overflow-hidden hover:border-purple-500/50 transition-all duration-300"
+                            >
+                                <div className="aspect-video bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center">
+                                    <div className="text-6xl text-purple-400/50">{template.icon}</div>
+                                </div>
+                                <div className="p-6">
+                                    <div className="flex items-center justify-between mb-3">
+                                        <h3 className="text-xl font-semibold text-white">{template.name}</h3>
+                                        <Badge className={`${template.badgeColor} text-white text-xs`}>
+                                            {template.badge}
+                                        </Badge>
+                                    </div>
+                                    <p className="text-gray-400 mb-4">{template.description}</p>
+                                    <div className="flex items-center justify-between">
+                                        <div className="flex items-center gap-2 text-sm text-gray-500">
+                                            <Star className="w-4 h-4 text-yellow-400" />
+                                            {template.rating}
+                                            <span>•</span>
+                                            <Download className="w-4 h-4" />
+                                            {template.downloads}
+                                        </div>
+                                        <Button size="sm" variant="outline" className="border-purple-500/30 text-purple-300">
+                                            <Eye className="w-4 h-4 mr-2" />
+                                            Preview
+                                        </Button>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* ================= DOCS SECTION ============================= */}
+            <section id="docs" className="py-20">
+                <div className="container mx-auto px-6">
+                    <div className="text-center mb-16">
+                        <Badge className="mb-4 bg-amber-500/20 text-amber-300 border-amber-500/30">
+                            Documentation
+                        </Badge>
+                        <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                            Everything You Need to Know
+                        </h2>
+                        <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+                            Comprehensive guides, tutorials, and API reference to get you started quickly.
+                        </p>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {docSections.map((section, index) => (
+                            <div 
+                                key={index}
+                                className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl p-8 hover:border-purple-500/50 transition-colors"
+                            >
+                                <div className="text-purple-400 mb-4">{section.icon}</div>
+                                <h3 className="text-xl font-semibold text-white mb-3">{section.title}</h3>
+                                <p className="text-gray-400 mb-6">{section.description}</p>
+                                <div className="space-y-2">
+                                    {section.items.map((item, itemIndex) => (
+                                        <Link 
+                                            key={itemIndex}
+                                            to={item.href}
+                                            className="flex items-center gap-2 text-sm text-gray-300 hover:text-purple-400 transition-colors"
+                                        >
+                                            <ChevronRight className="w-4 h-4" />
+                                            {item.title}
+                                        </Link>
+                                    ))}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* ================= FOOTER SECTION =========================== */}
             <Footer />
         </>
     );
