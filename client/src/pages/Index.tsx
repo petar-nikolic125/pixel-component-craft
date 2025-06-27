@@ -13,7 +13,7 @@ import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
 import { Navigation }       from "@/components/layout/Navigation";
-import HeroFX               from "@/components/ui/HeroFX";
+// import HeroFX               from "@/components/ui/HeroFX";
 import { FeatureSection }   from "@/components/landing/FeatureSection";
 import { PricingSection }   from "@/components/landing/PricingSection";
 
@@ -83,7 +83,7 @@ export default function Index() {
         <Navigation />
 
         {/* Three-JS burst (portal) */}
-        <HeroFX anchor={heroSec} />
+        {/* <HeroFX anchor={heroSec} /> */}
 
         {/* HERO ============================================================= */}
         <section

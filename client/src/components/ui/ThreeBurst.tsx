@@ -29,55 +29,51 @@ import { MeshStandardMaterial, Color, Mesh } from "three";
 import { useRef, useMemo, useState, Suspense } from "react";
 
 /* ────────────────────────────────────────────────────────────
-   Helper – material that gently hue-shifts & pulses
+   Helper – material component that gently hue-shifts & pulses
 ────────────────────────────────────────────────────────────── */
-function usePulsingMaterial(base: string) {
-    const mat = useMemo(
-        () =>
-            new MeshStandardMaterial({
-                color: new Color(base),
-                metalness: 0.95,
-                roughness: 0.05,
-                emissive: new Color(base),
-                emissiveIntensity: 0.4,
-                toneMapped: false,
-            }),
-        [base]
-    );
-
+function PulsingMaterial({ color }: { color: string }) {
+    const materialRef = useRef<any>(null);
+    
     useFrame(({ clock }) => {
-        const t = clock.elapsedTime * 0.2;
-        mat.color.offsetHSL(0.00025, 0, 0);
-        mat.emissiveIntensity = 0.35 + Math.sin(t * 6) * 0.25;
+        if (materialRef.current) {
+            const t = clock.elapsedTime * 0.2;
+            materialRef.current.color.offsetHSL(0.00025, 0, 0);
+            materialRef.current.emissiveIntensity = 0.35 + Math.sin(t * 6) * 0.25;
+        }
         invalidate(); // keep frameloop="demand" ticking
     });
 
-    return mat;
+    return (
+        <meshStandardMaterial
+            ref={materialRef}
+            color={color}
+            metalness={0.95}
+            roughness={0.05}
+            emissive={color}
+            emissiveIntensity={0.4}
+            toneMapped={false}
+        />
+    );
 }
 
 /* ────────────────────────────────────────────────────────────
    Invisible bright sphere that drives God-Rays
 ────────────────────────────────────────────────────────────── */
 function SunLight() {
-    const mat = useMemo(
-        () =>
-            new MeshStandardMaterial({
-                color: "#ffffff",
-                emissive: "#ffffff",
-                emissiveIntensity: 5,
-                transparent: true,
-                opacity: 0,
-            }),
-        []
-    );
-
     return (
         <Sphere
             args={[1, 16, 16]}
             position={[0, 4, -6]}
-            material={mat}
             name="SunLight" // ← must be named so EffectComposer can find it
-        />
+        >
+            <meshStandardMaterial
+                color="#ffffff"
+                emissive="#ffffff"
+                emissiveIntensity={5}
+                transparent={true}
+                opacity={0}
+            />
+        </Sphere>
     );
 }
 
@@ -85,26 +81,36 @@ function SunLight() {
    Constellation of juicy shapes
 ────────────────────────────────────────────────────────────── */
 function Cluster() {
-    const pink    = usePulsingMaterial("#ff41ff");
-    const cyan    = usePulsingMaterial("#00e0ff");
-    const gold    = usePulsingMaterial("#ffb300");
-    const emerald = usePulsingMaterial("#3aff9c");
-    const magenta = usePulsingMaterial("#ff36a1");
-
     return (
         <Float speed={1.5} rotationIntensity={0.6} floatIntensity={1.2}>
             {/* front trio */}
-            <Icosahedron  args={[1.8]}               material={pink}    position={[-5,  3, -4]} />
-            <TorusKnot    args={[1.2, 0.4, 256, 64]} material={cyan}    position={[ 4.5,-2.5,-3]} />
-            <RoundedBox   args={[2.3, 2.3, 0.5]}     radius={0.25}      material={gold}   position={[ 0, 1.5,-7]} />
+            <Icosahedron args={[1.8]} position={[-5, 3, -4]}>
+                <PulsingMaterial color="#ff41ff" />
+            </Icosahedron>
+            <TorusKnot args={[1.2, 0.4, 256, 64]} position={[4.5, -2.5, -3]}>
+                <PulsingMaterial color="#00e0ff" />
+            </TorusKnot>
+            <RoundedBox args={[2.3, 2.3, 0.5]} radius={0.25} position={[0, 1.5, -7]}>
+                <PulsingMaterial color="#ffb300" />
+            </RoundedBox>
 
             {/* rear swarm */}
             <group rotation-y={Math.PI / 6}>
-                <Tetrahedron args={[1.1]}   material={emerald} position={[ 7,  5,-11]} />
-                <Icosahedron args={[0.9]}   material={magenta} position={[-6.5,-4.5,-10]} />
-                <Cone        args={[1.2,2.4,24]} material={cyan}    position={[ 2,-6,-9]} />
-                <Cone        args={[0.7,1.4,18]} material={pink}    position={[ 0, 6,-10]} />
-                <Sphere      args={[0.8,32,32]} material={emerald} position={[-2, 1,-11]} />
+                <Tetrahedron args={[1.1]} position={[7, 5, -11]}>
+                    <PulsingMaterial color="#3aff9c" />
+                </Tetrahedron>
+                <Icosahedron args={[0.9]} position={[-6.5, -4.5, -10]}>
+                    <PulsingMaterial color="#ff36a1" />
+                </Icosahedron>
+                <Cone args={[1.2, 2.4, 24]} position={[2, -6, -9]}>
+                    <PulsingMaterial color="#00e0ff" />
+                </Cone>
+                <Cone args={[0.7, 1.4, 18]} position={[0, 6, -10]}>
+                    <PulsingMaterial color="#ff41ff" />
+                </Cone>
+                <Sphere args={[0.8, 32, 32]} position={[-2, 1, -11]}>
+                    <PulsingMaterial color="#3aff9c" />
+                </Sphere>
             </group>
         </Float>
     );

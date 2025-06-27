@@ -1,0 +1,87 @@
+I built a landing page that uses a Three-JS burst (@react-three/fiber,
+drei, postprocessing).
+Locally everything works, but Replit’s build container (and Vercel) aborts
+during npm install with peer-dependency loops.
+
+🔥 What happens
+Typical failing log:
+
+kotlin
+Copy
+Edit
+npm ERR! code ERESOLVE
+npm ERR! ERESOLVE unable to resolve dependency tree
+npm ERR!
+npm ERR! While resolving: rest-express@1.0.0
+npm ERR! Found: @react-three/fiber@8.18.0
+npm ERR! peer @react-three/fiber@"^9.0.0" from @react-three/postprocessing@3.0.4
+npm ERR!
+I also tried upgrading:
+
+kotlin
+Copy
+Edit
+npm i @react-three/fiber@^9  @react-three/drei@^9  @react-three/postprocessing@^3
+but npm v9 then fails because Fiber 9.1+ peers on React 19, while my
+project (and Replit template) is still React 18:
+
+kotlin
+Copy
+Edit
+npm ERR! Found: react@18.3.1
+npm ERR! peer react@"^19.0.0" from @react-three/fiber@9.1.2
+Downgrading postprocessing to 2.x restores peer compatibility with Fiber 8,
+but Drei 9 still expects Fiber 8, and the moment I try any other combo npm
+loops again.
+
+✔️ What I tried
+Wiped cache / lock:
+
+bash
+Copy
+Edit
+rm -rf node_modules package-lock.json && npm cache clean --force
+Combo A (stay on Fiber 8):
+
+bash
+Copy
+Edit
+npm i @react-three/fiber@8.18.0 \
+      @react-three/drei@9.122.0 \
+      @react-three/postprocessing@2.6.6 --save
+Locally OK, but Replit container still re-reads the old lock and fails unless
+I commit every lock-file variant.
+
+Combo B (Fiber 9.0.6, Drei 10, Post 3):
+
+bash
+Copy
+Edit
+npm i @react-three/fiber@9.0.6 \
+      @react-three/drei@10.x \
+      @react-three/postprocessing@3.x --save
+Locally OK, but Vercel sometimes uses npm 9 strict mode and still complains
+unless I add "overrides": { "@react-three/fiber": "9.0.6" }.
+
+Tried npm install --legacy-peer-deps → works but I don’t want a dirty prod
+tree.
+
+🤔 What I need
+Confirmation of which Node/npm image Replit’s “Nix” build uses and how
+peer-dep errors are evaluated (can I force legacy peer deps per-project?).
+
+Advice on pinning vs overrides so Replit’s dependency resolver
+doesn’t jump to Fiber 9.1 (React 19) on the next npm install.
+
+Best-practice for locking a working combo in a public template so forks /
+Vercel PR builds don’t explode.
+
+ℹ️ Reproduce quickly
+Fork the Replit above (or clone & npm install with npm 9)
+
+Observe ERESOLVE on mismatched Fiber/Postprocessing peers.
+
+Thanks a ton! Let me know if a minimal package.json would help; I can also
+share the full log (/vercel/.npm/_logs/...) if needed.
+
+— Petar Nikolić
