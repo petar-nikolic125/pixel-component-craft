@@ -105,6 +105,11 @@ Each component follows a standard configuration interface:
 - **Start Command**: `npm run start`
 - **Port Configuration**: 5000 (internal) → 80 (external)
 - **Auto-scaling**: Configured for Replit autoscale deployment
+- **Vercel Configuration**: 
+  - Uses `vercel.json` with legacy peer deps flag
+  - `.npmrc` configured for dependency compatibility
+  - Node.js 20 specified in `.nvmrc`
+  - Removed pnpm-lock.yaml for npm compatibility
 
 ## Changelog
 
