@@ -83,7 +83,7 @@ export default function Index() {
                 ref={heroSec}
                 id="main"
                 aria-labelledby="hero-heading"
-                className="relative isolate pt-44 pb-40 overflow-hidden z-20"
+                className="relative isolate pt-44 pb-40 overflow-hidden z-20 xxs:px-4"
             >
                 {/* soft vignette so 3-D stays behind content */}
                 <div
@@ -113,7 +113,7 @@ export default function Index() {
                          bg-clip-text text-transparent
                          drop-shadow-[0_8px_30px_rgba(0,0,0,0.6)]"
                             style={{
-                                fontSize: "clamp(2.4rem,8vw,6rem)",
+                                fontSize: "clamp(1.75rem,6vw,3rem)",
                                 WebkitTextStroke: "1px rgba(255,255,255,0.12)",
                             }}
                         >
@@ -122,21 +122,21 @@ export default function Index() {
                             <span
                                 className="relative inline-block text-transparent
                            bg-[conic-gradient(from_180deg_at_50%_50%,#e879f9_0%,#38bdf8_50%,#e879f9_100%)]
-                           bg-clip-text animate-[spin_20s_linear_infinite]
+                           bg-clip-text animate-none xs:animate-[spin_20s_linear_infinite]
                            motion-reduce:animate-none"
                             >
                 Masterpiece
               </span>
                         </h1>
 
-                        <p className="mt-10 text-lg sm:text-xl md:text-2xl max-w-3xl mx-auto text-gray-200/90">
+                        <p className="mt-10 text-lg sm:text-xl md:text-2xl max-w-[90vw] sm:max-w-3xl mx-auto text-gray-200/90">
                             Drag, drop and deploy in seconds with a canvas that feels alive.
                         </p>
                     </header>
 
                     {/* CTA glass-bar */}
                     <div
-                        className="relative mx-auto flex flex-col xs:flex-row w-full xs:w-max
+                        className="relative mx-auto flex flex-col xs:flex-row w-full xs:w-max max-w-[90vw] xs:max-w-none
                        gap-4 xs:gap-6 px-6 xs:px-10 py-6 rounded-full
                        bg-white/5 backdrop-blur-md border border-white/10
                        shadow-[0_12px_45px_rgba(0,0,0,0.35)]
@@ -224,7 +224,8 @@ function CtaButton({
         <Link
             to={to}
             className="relative overflow-hidden px-9 py-4 rounded-full font-semibold
-                 flex items-center gap-3 transition-transform active:scale-95"
+                 flex items-center gap-3 transition-transform active:scale-95
+                 w-full xs:w-auto min-h-12 justify-center"
         >
       <span
           className={`absolute inset-0 rounded-full ${
