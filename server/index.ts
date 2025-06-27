@@ -56,12 +56,8 @@ app.use((req, res, next) => {
     serveStatic(app);
   }
 
-  const PORT = process.env.PORT || 5000;
-  server.listen({
-    port: PORT,
-    host: "0.0.0.0",
-    reusePort: true,
-  }, () => {
+  const PORT = Number(process.env.PORT) || 5000;
+  server.listen(PORT, () => {
     console.log(`🚀 Server listening at http://localhost:${PORT}`);
   });
 })();

@@ -25,14 +25,14 @@ import {
     Grid,
 } from "@react-three/drei";
 import { EffectComposer, Bloom, GodRays } from "@react-three/postprocessing";
-import { MeshStandardMaterial, Color, Mesh } from "three";
-import { useRef, useMemo, useState, Suspense } from "react";
+import * as THREE from "three";
+import { useRef, useMemo, useState, Suspense, useEffect } from "react";
 
 /* ────────────────────────────────────────────────────────────
    Helper – material component that gently hue-shifts & pulses
 ────────────────────────────────────────────────────────────── */
 function PulsingMaterial({ color }: { color: string }) {
-    const materialRef = useRef<any>(null);
+    const materialRef = useRef<THREE.MeshStandardMaterial>(null);
     
     useFrame(({ clock }) => {
         if (materialRef.current) {
@@ -121,7 +121,7 @@ function Cluster() {
 ────────────────────────────────────────────────────────────── */
 function Effects() {
     const { scene }  = useThree();
-    const sun        = scene.getObjectByName("SunLight") as Mesh | undefined;
+    const sun        = scene.getObjectByName("SunLight") as THREE.Mesh | undefined;
     const enablePost = new URLSearchParams(location.search).has("ENABLE_POST");
 
     if (!sun || !enablePost) return null;
@@ -151,16 +151,43 @@ function Effects() {
    Main export
 ────────────────────────────────────────────────────────────── */
 export default function ThreeBurst() {
-    /* cap DPR to 2 for perf; still retina-ish */
-    const [dpr] = useState(() => Math.min(window.devicePixelRatio, 2));
+    const [dpr] = useState(() => Math.min(window?.devicePixelRatio || 1, 2));
+    const [hasWebGL, setHasWebGL] = useState(true);
+
+    useEffect(() => {
+        // Check WebGL support
+        try {
+            const canvas = document.createElement('canvas');
+            const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+            if (!gl) {
+                setHasWebGL(false);
+            }
+        } catch (e) {
+            setHasWebGL(false);
+        }
+    }, []);
+
+    if (!hasWebGL) {
+        return (
+            <div className="fixed inset-0 pointer-events-none z-0 select-none bg-gradient-to-br from-purple-900/20 to-blue-900/20" />
+        );
+    }
 
     return (
         <Canvas
             dpr={dpr}
-            gl={{ preserveDrawingBuffer: true }}   // mitigates rare WebGL context loss
+            gl={{ 
+                preserveDrawingBuffer: true,
+                antialias: false,
+                alpha: true,
+                powerPreference: "high-performance"
+            }}
             frameloop="demand"
             camera={{ position: [0, 0, 18], fov: 45 }}
             className="fixed inset-0 pointer-events-none z-0 select-none"
+            onCreated={({ gl }) => {
+                gl.setClearColor(0x000000, 0);
+            }}
         >
             <Suspense fallback={null}>
                 <Environment preset="warehouse" />
@@ -168,7 +195,6 @@ export default function ThreeBurst() {
                 <Cluster />
                 <SunLight />
 
-                {/* ground-plane holographic grid */}
                 <Grid
                     args={[60, 60]}
                     sectionColor="#222"
